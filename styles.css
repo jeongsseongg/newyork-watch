@@ -2842,10 +2842,12 @@ body.admin-mode .main-wrap { padding-top: 26px; }
 .login-content {
     position: relative;
     width: 100%;
-    max-width: 440px;
+    max-width: 380px;
+    max-height: 88vh;
+    overflow-y: auto;
     background: var(--white);
-    border-radius: 24px;
-    padding: 36px 28px 28px;
+    border-radius: 20px;
+    padding: 26px 22px 20px;
     box-shadow: 0 30px 80px rgba(0,0,0,0.4);
     animation: modalIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -2862,18 +2864,18 @@ body.admin-mode .main-wrap { padding-top: 26px; }
     align-items: center;
     justify-content: center;
 }
-.login-head { margin-bottom: 32px; }
+.login-head { margin-bottom: 20px; }
 .login-eyebrow {
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 3px;
     color: var(--green-bright);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 .login-head h2 {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.35;
     color: var(--text);
 }
 .login-head h2 strong {
@@ -2883,11 +2885,11 @@ body.admin-mode .main-wrap { padding-top: 26px; }
 
 .login-btn {
     width: 100%;
-    padding: 15px;
+    padding: 12px;
     border-radius: 12px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
