@@ -27,17 +27,18 @@
 /* 2단계에서 복사한 값으로 교체하세요. (apiKey 에 'PASTE' 가
    남아 있으면 백엔드가 꺼진 것으로 간주하고 데모로 동작합니다.) */
 window.NW_FIREBASE_CONFIG = {
-  apiKey: "PASTE_API_KEY_HERE",
-  authDomain: "PASTE_AUTH_DOMAIN_HERE",
-  projectId: "PASTE_PROJECT_ID_HERE",
-  storageBucket: "PASTE_STORAGE_BUCKET_HERE",
-  messagingSenderId: "PASTE_SENDER_ID_HERE",
-  appId: "PASTE_APP_ID_HERE"
+  apiKey: "AIzaSyCDQU0W4HHJ2HD1_tGXa753_BdBwQjwBek",
+  authDomain: "newyork-watch.firebaseapp.com",
+  projectId: "newyork-watch",
+  storageBucket: "newyork-watch.firebasestorage.app",
+  messagingSenderId: "960228838979",
+  appId: "1:960228838979:web:811290a14db762ac704ef6",
+  measurementId: "G-MPKFN1GKS9"
 };
 
 /* 관리자 권한을 줄 이메일 목록 (이 계정으로 로그인하면 관리자 모드) */
 window.NW_ADMIN_EMAILS = [
-  // "admin@newyorkwatch.co.kr"
+  "jeongsseongg@gmail.com"
 ];
 
 /* ── 권장 Firestore 보안 규칙 (콘솔 > Firestore > 규칙) ──────
@@ -47,8 +48,7 @@ service cloud.firestore {
     function isAdmin() {
       return request.auth != null &&
         request.auth.token.email in [
-          // 위 NW_ADMIN_EMAILS 와 동일하게 적어주세요
-          // "admin@newyorkwatch.co.kr"
+          "jeongsseongg@gmail.com"
         ];
     }
     match /users/{uid} {
