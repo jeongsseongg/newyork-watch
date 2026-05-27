@@ -1,6 +1,6 @@
 {
-  "name": "뉴욕워치 | 명품시계 매입·비교견적",
-  "short_name": "뉴욕워치",
+  "name": "벨로르 | 명품시계 매입·비교견적",
+  "short_name": "벨로르",
   "description": "명품시계 구입·판매·수리 전문 공식 직영점. 실시간 비교견적과 24시간 상담.",
   "lang": "ko",
   "dir": "ltr",
@@ -10,8 +10,8 @@
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait",
-  "background_color": "#0a1a14",
-  "theme_color": "#0a1a14",
+  "background_color": "#241d14",
+  "theme_color": "#241d14",
   "categories": ["shopping", "lifestyle", "business"],
   "icons": [
     {
