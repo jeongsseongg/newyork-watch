@@ -286,31 +286,39 @@
       }
     }
 
-    /* ========== 관리자 통합 추가 버튼 (우측 상단 "+") ========== */
-    var adminFab = document.createElement('button');
-    adminFab.id = 'adminFab'; adminFab.type = 'button'; adminFab.hidden = true;
-    adminFab.setAttribute('aria-label', '추가');
-    adminFab.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
-    document.body.appendChild(adminFab);
+    /* ========== 관리자 인라인 추가 버튼 (판매시계 / 커뮤니티 칸에 녹임) ========== */
+    // 플로팅 "+" 대신 각 섹션 탭 아래에 현재 탭에 맞춰 작성 페이지를 여는 버튼을 둔다.
+    var colAddBtn = null, postAddBtn = null;
 
-    var addMenu = makeModal('adminAddMenu', 'ADMIN', '무엇을 추가할까요?');
-    $('.modal-body', addMenu).innerHTML =
-      '<div class="add-menu">' +
-      '<button type="button" class="add-menu-item" data-add="brand"><b>벨로르 판매 시계</b><span>정품 보증 · 판매시계 등록</span></button>' +
-      '<button type="button" class="add-menu-item" data-add="user"><b>고객 판매 시계</b><span>검수 완료 매물 등록</span></button>' +
-      '<button type="button" class="add-menu-item" data-add="post"><b>커뮤니티 글</b><span>시세·가이드·브랜드 등 카테고리</span></button>' +
-      '<button type="button" class="add-menu-item" data-add="review"><b>매입 후기</b><span>별점·사진 포함</span></button>' +
-      '</div>';
-    adminFab.addEventListener('click', function () { openModal(addMenu); });
-    $('.modal-body', addMenu).addEventListener('click', function (e) {
-      var it = e.target.closest('[data-add]'); if (!it) return;
-      closeModal(addMenu);
-      var t = it.dataset.add;
-      if (t === 'brand') openListing(null, listingCats.brand);
-      else if (t === 'user') openListing(null, listingCats.user);
-      else if (t === 'post') openEditor('post', null);
-      else if (t === 'review') openEditor('review', null);
-    });
+    function makeAddBtn(label) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'admin-add-inline'; b.hidden = true;
+      b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span>' + label + '</span>';
+      return b;
+    }
+
+    // 판매시계 — 벨로르/고객 탭 아래. 현재 활성 탭에 맞춰 카테고리 자동 선택
+    var colTabs = document.querySelector('#collection .col-tabs');
+    if (colTabs) {
+      colAddBtn = makeAddBtn('시계 등록');
+      colTabs.parentNode.insertBefore(colAddBtn, colTabs.nextSibling);
+      colAddBtn.addEventListener('click', function () {
+        var at = document.querySelector('#collection .col-tab.active');
+        var key = at && at.dataset.coltab;            // 'ny'(벨로르) | 'user'(고객)
+        openListing(null, key === 'user' ? listingCats.user : listingCats.brand);
+      });
+    }
+
+    // 커뮤니티 — 카테고리 탭 아래. '매입 후기' 탭이면 후기, 그 외엔 글 작성
+    var insTabs = document.querySelector('#insight .insight-tabs-bar');
+    if (insTabs) {
+      postAddBtn = makeAddBtn('글 작성');
+      insTabs.parentNode.insertBefore(postAddBtn, insTabs.nextSibling);
+      postAddBtn.addEventListener('click', function () {
+        var at = document.querySelector('#insight .insight-tab.active');
+        openEditor(at && at.dataset.cat === 'review' ? 'review' : 'post', null);
+      });
+    }
 
     // 수정/삭제 (관리자) — 인사이트 행
     document.addEventListener('click', function (e) {
@@ -464,7 +472,9 @@
     }
     B.onAuthChange(function (user, info) {
       lastInfo = info || { isAdmin: false, isApprovedVendor: false };
-      adminFab.hidden = !lastInfo.isAdmin;     // 우측 상단 + 는 관리자만
+      var showAdd = !!lastInfo.isAdmin;        // 등록 버튼은 관리자만
+      if (colAddBtn) colAddBtn.hidden = !showAdd;
+      if (postAddBtn) postAddBtn.hidden = !showAdd;
       updateVendorView(info);
       applyMyPageRole(info);
       renderInsight();

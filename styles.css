@@ -25,8 +25,6 @@
     --tabbar-h: 68px;
     --app-w: 660px;
     --container: 660px;
-    /* 로고 톤(블랙&화이트 세리프)에 맞춘 디스플레이 세리프 */
-    --serif: 'Playfair Display', 'Noto Serif KR', 'Pretendard', serif;
 }
 
 html {
@@ -96,17 +94,16 @@ img { display: block; max-width: 100%; height: auto; }
 .eyebrow.light { color: var(--green-light); }
 
 .section-title {
-    font-family: var(--serif);
-    font-size: 31px;
-    font-weight: 600;
-    line-height: 1.28;
-    letter-spacing: -0.3px;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.6px;
     margin-bottom: 20px;
 }
 .section-title.center { text-align: center; }
 .g { color: var(--green-bright); }
 .hl { color: var(--gold); font-weight: 900; }
-.hl-green { color: var(--green-bright); font-weight: 700; }
+.hl-green { color: var(--green-bright); font-weight: 900; }
 
 /* ========== Header (앱 스타일) ========== */
 .header {
@@ -322,12 +319,11 @@ img { display: block; max-width: 100%; height: auto; }
     margin-bottom: 26px;
 }
 .hero-title {
-    font-family: var(--serif);
-    font-size: 50px;
-    font-weight: 600;
-    line-height: 1.18;
-    letter-spacing: -0.5px;
-    margin-bottom: 34px;
+    font-size: 46px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1.2px;
+    margin-bottom: 32px;
 }
 .hero-desc {
     font-size: 16px;
@@ -2758,13 +2754,13 @@ body.admin-mode .main-wrap { padding-top: 0; }
 .auction-price strong {
     font-size: 38px;
     font-weight: 900;
-    color: var(--text);
+    color: var(--green-bright);
     transition: transform 0.3s, color 0.3s;
     display: inline-block;
 }
 .auction-price.flash strong {
     transform: scale(1.06);
-    color: var(--green-bright);
+    color: var(--green-light);
 }
 .auction-price em {
     font-style: normal;
@@ -5012,20 +5008,27 @@ body.admin-mode .hcard-dynamic .hcard-admin { display: flex; }
 .btn-outline svg { vertical-align: -3px; width: 18px; height: 18px; }
 
 /* ── 관리자 통합 추가 버튼(우측 상단 +) + 추가 메뉴 ───────────── */
-#adminFab {
-    position: fixed;
-    /* 자연스러운 우측 하단 플로팅(하단 탭바 위) */
-    bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 18px);
-    left: 50%;
-    transform: translateX(min(calc(50vw - 42px), calc(var(--app-w) / 2 - 42px)));
-    width: 52px; height: 52px; border-radius: 50%;
-    background: var(--dark-green); color: #fff; border: 0;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 10px 26px rgba(36,29,20,0.35); cursor: pointer;
-    z-index: 995; transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s;
+/* 관리자 인라인 등록 버튼 — 판매시계/커뮤니티 탭 아래에 자연스럽게 녹임 */
+.admin-add-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin: 14px 0 4px;
+    padding: 13px;
+    border: 1.5px dashed var(--green-bright);
+    border-radius: 12px;
+    background: rgba(177, 153, 106, 0.07);
+    color: var(--green-mid);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.1s;
 }
-#adminFab svg { width: 24px; height: 24px; }
-#adminFab:active { transform: translateX(min(calc(50vw - 42px), calc(var(--app-w) / 2 - 42px))) scale(0.94); }
+.admin-add-inline:hover { background: rgba(177, 153, 106, 0.14); border-color: var(--green-mid); }
+.admin-add-inline:active { transform: scale(0.99); }
+.admin-add-inline svg { width: 18px; height: 18px; }
 
 .add-menu { display: flex; flex-direction: column; gap: 10px; }
 .add-menu-item {
