@@ -26,6 +26,15 @@
     --tabbar-h: 68px;
     --app-w: 660px;
     --container: 660px;
+    /* 로고(하이컨트라스트 세리프) 톤의 영문/브랜드 디스플레이용 — 한글엔 적용하지 않음 */
+    --serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+
+/* 로고 느낌의 영문 세리프 유틸 (한글은 산세리프 유지) */
+.serif { font-family: var(--serif); }
+/* 세리프 가격/숫자는 라이닝 정렬 숫자로 (옛스타일 숫자 흔들림 방지) */
+.hcard-price, .auction-price strong, .live-best strong, .bid-amount {
+    font-variant-numeric: lining-nums tabular-nums;
 }
 
 /* 어두운 배경 컨테이너에서는 accent 변수를 밝게 재정의 → 흰 글씨/포인트가 보이게 */
@@ -103,22 +112,32 @@ img { display: block; max-width: 100%; height: auto; }
 /* ========== Typography Helpers ========== */
 .eyebrow {
     display: inline-block;
-    font-size: 12px;
+    font-family: var(--serif);
+    font-size: 15px;
     font-weight: 600;
-    letter-spacing: 4px;
+    letter-spacing: 3.5px;
     color: var(--green-bright);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     text-transform: uppercase;
 }
-.eyebrow.center { display: block; text-align: center; }
+.eyebrow.center { display: block; text-align: center; position: relative; padding-top: 18px; }
+.eyebrow.center::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 38px; height: 1px;
+    background: currentColor;
+    opacity: 0.45;
+}
 .eyebrow.light { color: var(--green-light); }
 
 .section-title {
-    font-size: 28px;
-    font-weight: 800;
-    line-height: 1.25;
-    letter-spacing: -0.6px;
-    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.32;
+    letter-spacing: -0.8px;
+    margin-bottom: 22px;
 }
 .section-title.center { text-align: center; }
 .g { color: var(--green-bright); }
@@ -340,18 +359,28 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .hero-content { position: relative; z-index: 2; }
 .hero-eyebrow {
-    font-size: 12px;
+    position: relative;
+    font-family: var(--serif);
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: 6px;
+    letter-spacing: 5px;
     text-transform: uppercase;
     color: var(--green-light);
+    padding-top: 22px;
     margin-bottom: 26px;
+}
+.hero-eyebrow::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 46px; height: 1px;
+    background: rgba(255, 255, 255, 0.55);
 }
 .hero-title {
     font-size: 46px;
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -1.2px;
+    font-weight: 700;
+    line-height: 1.22;
+    letter-spacing: -1px;
     margin-bottom: 32px;
 }
 .hero-desc {
@@ -440,7 +469,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 /* ========== Section Common ========== */
-.section { padding: 60px 0; }
+.section { padding: 76px 0; }
 .section-dark { background: var(--black); color: var(--white); }
 .section-dark .section-title { color: var(--white); }
 .section-soft { background: var(--bg-soft); }
@@ -741,9 +770,9 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .page-hero > * { position: relative; z-index: 2; }
 .page-hero-title {
-    font-size: 30px;
-    font-weight: 800;
-    line-height: 1.25;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
     letter-spacing: -0.8px;
     margin-bottom: 14px;
 }
@@ -2780,8 +2809,9 @@ body.admin-mode .main-wrap { padding-top: 0; }
     margin-bottom: 18px;
 }
 .auction-price strong {
-    font-size: 38px;
-    font-weight: 900;
+    font-family: var(--serif);
+    font-size: 46px;
+    font-weight: 600;
     color: var(--green-bright);
     transition: transform 0.3s, color 0.3s;
     display: inline-block;
@@ -3445,14 +3475,14 @@ body.admin-mode .main-wrap { padding-top: 0; }
     user-select: none;
 }
 .hcard:hover {
-    transform: translateY(-4px);
-    border-color: var(--green-bright);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+    transform: translateY(-6px);
+    border-color: rgba(0,0,0,0.16);
+    box-shadow: 0 18px 42px rgba(0,0,0,0.10);
 }
 .hcard-img {
     width: 100%;
     aspect-ratio: 1;
-    background: #f7f7f7;
+    background: #fafafa;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3475,9 +3505,11 @@ body.admin-mode .main-wrap { padding-top: 0; }
 .hcard-tag.ny { background: var(--green); color: var(--white); }
 .hcard-tag.user { background: rgba(255,255,255,0.9); color: var(--text); border: 1px solid var(--border); }
 .hcard-brand {
-    font-size: 10px;
-    font-weight: 800;
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 600;
     letter-spacing: 1.5px;
+    text-transform: uppercase;
     color: var(--green-bright);
     padding: 12px 14px 0;
     margin: 0;
@@ -3492,8 +3524,10 @@ body.admin-mode .main-wrap { padding-top: 0; }
     min-height: 36px;
 }
 .hcard-price {
-    font-size: 15px;
-    font-weight: 900;
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
     color: var(--text);
     padding: 0 14px 14px;
     margin: 0;
@@ -3702,8 +3736,9 @@ body.admin-mode .main-wrap { padding-top: 0; }
 }
 .live-best strong {
     display: block;
-    font-size: 32px;
-    font-weight: 900;
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 600;
     color: var(--green-bright);
     transition: transform 0.2s, color 0.2s;
 }
