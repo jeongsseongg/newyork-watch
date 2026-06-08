@@ -1,5 +1,5 @@
 /* 벨로르 PWA 서비스워커 */
-const VERSION = "bellore-v5";
+const VERSION = "bellore-v7";
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 
@@ -40,9 +40,8 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
 
   const url = new URL(req.url);
-  if (url.origin !== self.location.origin) return; // 외부 폰트/CDN은 브라우저 기본 처리
+  if (url.origin !== self.location.origin) return;
 
-  // 앱 코드(HTML/JS/CSS): 항상 네트워크 우선 → 최신 즉시 반영, 실패 시 캐시
   const isAppCode = req.mode === 'navigate' ||
     /\.(?:js|css|html)(?:\?|$)/.test(url.pathname) ||
     url.pathname === '/' || url.pathname.endsWith('/');
@@ -59,7 +58,6 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 그 외 정적 리소스(이미지 등): 캐시 우선 + 백그라운드 갱신(stale-while-revalidate)
   event.respondWith(
     caches.match(req).then((cached) => {
       const network = fetch(req)
