@@ -30,6 +30,14 @@
     --serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
 }
 
+/* PC(넓은 화면)에서는 앱 컨테이너 폭을 660px로 확대 */
+@media (min-width: 700px) {
+    :root {
+        --app-w: 660px;
+        --container: 660px;
+    }
+}
+
 /* 로고 느낌의 영문 세리프 유틸 (한글은 산세리프 유지) */
 .serif { font-family: var(--serif); }
 /* 세리프 가격/숫자는 라이닝 정렬 숫자로 (옛스타일 숫자 흔들림 방지) */
