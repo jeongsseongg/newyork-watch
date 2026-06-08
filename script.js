@@ -1286,7 +1286,6 @@
             card.dataset.price = it.price || 0;
             card.innerHTML =
                 '<div class="hcard-img"><img src="' + esc(listingImg(it)) + '" alt=""></div>' +
-                '<span class="hcard-tag user">개인 판매</span>' +
                 '<p class="hcard-brand">' + esc(it.brand) + '</p>' +
                 '<p class="hcard-model">' + esc(it.model) + '</p>' +
                 '<p class="hcard-price">' + priceHtml + '</p>' +
@@ -1320,7 +1319,6 @@
             card.dataset.price = it.price || 0;
             card.innerHTML =
                 '<div class="hcard-img"><img src="' + esc(listingImg(it)) + '" alt=""></div>' +
-                '<span class="hcard-tag ny">벨로르</span>' +
                 '<p class="hcard-brand">' + esc(it.brand) + '</p>' +
                 '<p class="hcard-model">' + esc(it.model) + '</p>' +
                 '<p class="hcard-price">' + priceHtml + '</p>' +

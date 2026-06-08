@@ -5820,3 +5820,60 @@ body.admin-mode .hcard-dynamic .hcard-admin { display: flex; }
 .switch[aria-checked="true"] .switch-knob { transform: translateX(22px); }
 /* 와이드 모드는 PC 전용 — 모바일에선 설정 섹션 자체를 숨김 */
 @media (max-width: 699px) { #displaySettingsBox, .pc-only-setting { display: none; } }
+
+/* ============================================================
+   판매시계 카테고리 화면 (대표 브랜드 · 필터 · 정렬 헤더)
+   ============================================================ */
+.cat-brands {
+    display: flex; gap: 14px; overflow-x: auto; padding: 4px 2px 14px;
+    -ms-overflow-style: none; scrollbar-width: none;
+}
+.cat-brands::-webkit-scrollbar { display: none; }
+.cat-brand {
+    flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 7px;
+    width: 60px; background: none;
+}
+.cat-brand-ic {
+    width: 58px; height: 58px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg-soft); border: 1px solid var(--border);
+    font-family: var(--serif); font-size: 17px; font-weight: 700; letter-spacing: .5px;
+    color: var(--text-2); transition: all .18s;
+}
+.cat-brand.active .cat-brand-ic {
+    background: var(--green-bright); color: var(--white); border-color: var(--green-bright);
+}
+.cat-brand-name { font-size: 11px; color: var(--text-2); white-space: nowrap; }
+.cat-brand.active .cat-brand-name { color: var(--text); font-weight: 600; }
+
+.cat-filters { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; scrollbar-width: none; }
+.cat-filters::-webkit-scrollbar { display: none; }
+.cat-filter {
+    flex: 0 0 auto; display: inline-flex; align-items: center; gap: 5px;
+    padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px;
+    background: var(--white); font-size: 13px; color: var(--text-2); white-space: nowrap;
+}
+.cat-filter i { font-style: normal; font-size: 10px; color: var(--text-3); }
+
+.cat-toggles { display: flex; gap: 18px; padding: 4px 2px 14px; flex-wrap: wrap; }
+.cat-toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--text-2); cursor: pointer; }
+.cat-toggle input { display: none; }
+.cat-toggle-track {
+    width: 34px; height: 20px; border-radius: 999px; background: var(--border);
+    position: relative; transition: background .18s; flex-shrink: 0;
+}
+.cat-toggle-track::after {
+    content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px;
+    border-radius: 50%; background: #fff; transition: transform .18s; box-shadow: 0 1px 2px rgba(0,0,0,.3);
+}
+.cat-toggle input:checked + .cat-toggle-track { background: var(--green-bright); }
+.cat-toggle input:checked + .cat-toggle-track::after { transform: translateX(14px); }
+
+.cat-listhead {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 2px 14px; border-bottom: 1px solid var(--border); margin-bottom: 16px;
+}
+.cat-count { font-size: 13px; color: var(--text-2); }
+.cat-count b { color: var(--text); font-weight: 800; }
+.cat-sort { font-size: 13px; color: var(--text-2); display: inline-flex; align-items: center; gap: 4px; }
+.cat-sort i { font-style: normal; font-size: 10px; }

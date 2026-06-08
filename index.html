@@ -260,9 +260,6 @@
             <!-- 판매중인 시계 (2열 그리드) -->
             <section class="section" id="homeOnSale">
                 <div class="container">
-                    <p class="eyebrow center">ON SALE</p>
-                    <h2 class="section-title center">판매 중인 <span class="g">시계</span></h2>
-                    <p class="lead center">정품 보증 · A/S 가능</p>
                     <div class="home-sale-grid">
                         <article class="hcard" data-nav="collection">
                             <div class="hcard-img"><img src="assets/m126284rbr0011.png" alt=""></div>
@@ -311,6 +308,30 @@
                             <p class="hcard-brand">FRANCK MULLER</p>
                             <p class="hcard-model">뱅가드 V45 다이아</p>
                             <p class="hcard-price">32,000,000<em>원</em></p>
+                        </article>
+                        <article class="hcard" data-nav="collection">
+                            <div class="hcard-img"><img src="assets/m1262310020.png" alt=""></div>
+                            <p class="hcard-brand">ROLEX</p>
+                            <p class="hcard-model">데이트저스트 36 그레이</p>
+                            <p class="hcard-price">14,200,000<em>원</em></p>
+                        </article>
+                        <article class="hcard" data-nav="collection">
+                            <div class="hcard-img"><img src="assets/m1262000002.png" alt=""></div>
+                            <p class="hcard-brand">ROLEX</p>
+                            <p class="hcard-model">데이트저스트 36 클래식</p>
+                            <p class="hcard-price">13,800,000<em>원</em></p>
+                        </article>
+                        <article class="hcard" data-nav="collection">
+                            <div class="hcard-img"><img src="assets/m1282350009.png" alt=""></div>
+                            <p class="hcard-brand">ROLEX</p>
+                            <p class="hcard-model">데이데이트 36 핑크</p>
+                            <p class="hcard-price">54,000,000<em>원</em></p>
+                        </article>
+                        <article class="hcard" data-nav="collection">
+                            <div class="hcard-img"><img src="assets/m1282380045.png" alt=""></div>
+                            <p class="hcard-brand">ROLEX</p>
+                            <p class="hcard-model">데이데이트 36 베젤</p>
+                            <p class="hcard-price">62,000,000<em>원</em></p>
                         </article>
                     </div>
                     <div style="text-align:right;margin-top:12px">
@@ -1050,220 +1071,146 @@
 
             <section class="section section-soft" style="padding-top: 32px;">
                 <div class="container">
-                    <div class="col-tabs">
-                        <button class="col-tab active" data-coltab="ny">
-                            <strong>벨로르 판매</strong>
-                            <span>정품 보증 · A/S 가능</span>
-                        </button>
-                        <button class="col-tab" data-coltab="user">
-                            <strong>고객 판매 마켓</strong>
-                            <span>개인 판매 · 검수 완료</span>
-                        </button>
+                    <!-- 대표 브랜드 -->
+                    <div class="cat-brands">
+                        <button class="cat-brand active" data-brand="all"><span class="cat-brand-ic">ALL</span><span class="cat-brand-name">전체</span></button>
+                        <button class="cat-brand" data-brand="ROLEX"><span class="cat-brand-ic">R</span><span class="cat-brand-name">롤렉스</span></button>
+                        <button class="cat-brand" data-brand="PATEK"><span class="cat-brand-ic">P</span><span class="cat-brand-name">파텍필립</span></button>
+                        <button class="cat-brand" data-brand="AUDEMARS"><span class="cat-brand-ic">AP</span><span class="cat-brand-name">오데마피게</span></button>
+                        <button class="cat-brand" data-brand="VACHERON"><span class="cat-brand-ic">V</span><span class="cat-brand-name">바쉐론</span></button>
+                        <button class="cat-brand" data-brand="FRANCK"><span class="cat-brand-ic">F</span><span class="cat-brand-name">프랭크뮬러</span></button>
+                    </div>
+
+                    <!-- 필터 드롭다운 -->
+                    <div class="cat-filters">
+                        <button class="cat-filter" type="button">카테고리<i>▾</i></button>
+                        <button class="cat-filter" type="button">브랜드<i>▾</i></button>
+                        <button class="cat-filter" type="button">등급<i>▾</i></button>
+                        <button class="cat-filter" type="button">사이즈<i>▾</i></button>
+                    </div>
+
+                    <!-- 토글 필터 -->
+                    <div class="cat-toggles">
+                        <label class="cat-toggle"><input type="checkbox"><span class="cat-toggle-track"></span>거래 진행중 제외</label>
+                        <label class="cat-toggle"><input type="checkbox"><span class="cat-toggle-track"></span>보고구매 가능</label>
+                    </div>
+
+                    <!-- 개수 + 정렬 -->
+                    <div class="cat-listhead">
+                        <span class="cat-count">총 <b id="catCount">0</b>건</span>
+                        <button class="cat-sort" type="button">최신 등록순 <i>▾</i></button>
                     </div>
 
                     <div class="col-panel active" id="panel-ny">
-                        <div class="filter-bar">
-                            <button class="filter-chip active">전체</button>
-                            <button class="filter-chip">롤렉스</button>
-                            <button class="filter-chip">파텍필립</button>
-                            <button class="filter-chip">오데마피게</button>
-                            <button class="filter-chip">바쉐론</button>
-                            <button class="filter-chip">프랭크뮬러</button>
-                        </div>
                         <div class="col-grid">
                             <div class="col-grid-inner">
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m126284rbr0011.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이트저스트 36 자개 다이아</p>
                                     <p class="hcard-price">22,800,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m1263340002.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이트저스트 41 화이트</p>
                                     <p class="hcard-price">16,500,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m128395tbr0032.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이데이트 36 다이아 베젤</p>
                                     <p class="hcard-price">78,000,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m278381rbr0004.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이트저스트 31 다이아</p>
                                     <p class="hcard-price">28,500,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m1262310020.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이트저스트 36 그레이</p>
                                     <p class="hcard-price">14,200,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m1282390005.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이데이트 36 그린</p>
                                     <p class="hcard-price">52,000,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m3369350001.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이데이트 36 옐로우골드</p>
                                     <p class="hcard-price">58,000,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m1262000002.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이트저스트 36 클래식</p>
                                     <p class="hcard-price">13,800,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m1282350009.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이데이트 36 핑크</p>
                                     <p class="hcard-price">54,000,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m1282380045.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이데이트 36 베젤</p>
                                     <p class="hcard-price">62,000,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m2282350055.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이데이트 40 옐로우</p>
                                     <p class="hcard-price">60,000,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m2282360012.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이데이트 40 플래티넘</p>
                                     <p class="hcard-price">85,000,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m2282380042.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이데이트 40 옐로우골드</p>
                                     <p class="hcard-price">68,000,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m3362380004.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이데이트 36 옐로우골드</p>
                                     <p class="hcard-price">55,000,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/m3369330001.png" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">ROLEX</p>
                                     <p class="hcard-model">데이데이트 36 로즈골드</p>
                                     <p class="hcard-price">63,000,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/6850CASA.jpg" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">FRANCK MULLER</p>
                                     <p class="hcard-model">카사블랑카 6850</p>
                                     <p class="hcard-price">8,900,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/1(487).jpg" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">FRANCK MULLER</p>
                                     <p class="hcard-model">뱅가드 V45 다이아</p>
                                     <p class="hcard-price">32,000,000<em>원</em></p>
                                 </article>
                                 <article class="hcard">
                                     <div class="hcard-img"><img src="assets/KakaoTalk_20250428_224216035.jpg" alt=""></div>
-                                    <span class="hcard-tag ny">벨로르</span>
                                     <p class="hcard-brand">VACHERON</p>
                                     <p class="hcard-model">오버시즈 퍼페추얼</p>
                                     <p class="hcard-price">42,000,000<em>원</em></p>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-panel" id="panel-user">
-                        <div class="market-notice">
-                            <strong>고객 판매 마켓 안내</strong>
-                            <p>일반 고객이 직접 판매하는 시계입니다. 모든 매물은 벨로르 감정사가 검수 후 등록됩니다.</p>
-                        </div>
-                        <div class="col-grid">
-                            <div class="col-grid-inner">
-                                <article class="hcard">
-                                    <div class="hcard-img"><img src="assets/KakaoTalk_20250515_135819220.jpg" alt=""></div>
-                                    <span class="hcard-tag user">개인 판매</span>
-                                    <p class="hcard-brand">ROLEX</p>
-                                    <p class="hcard-model">서브마리너 데이트</p>
-                                    <p class="hcard-price">14,800,000<em>원</em></p>
-                                </article>
-                                <article class="hcard">
-                                    <div class="hcard-img"><img src="assets/KakaoTalk_20250620_163358845_02.jpg" alt=""></div>
-                                    <span class="hcard-tag user">개인 판매</span>
-                                    <p class="hcard-brand">PATEK PHILIPPE</p>
-                                    <p class="hcard-model">아쿠아넛 5167A</p>
-                                    <p class="hcard-price">38,500,000<em>원</em></p>
-                                </article>
-                                <article class="hcard">
-                                    <div class="hcard-img"><img src="assets/KakaoTalk_20250513_003812408_03.jpg" alt=""></div>
-                                    <span class="hcard-tag user">개인 판매</span>
-                                    <p class="hcard-brand">AUDEMARS PIGUET</p>
-                                    <p class="hcard-model">로열오크 15500ST</p>
-                                    <p class="hcard-price">48,000,000<em>원</em></p>
-                                </article>
-                                <article class="hcard">
-                                    <div class="hcard-img"><img src="assets/KakaoTalk_20250506_211755713_02.jpg" alt=""></div>
-                                    <span class="hcard-tag user">개인 판매</span>
-                                    <p class="hcard-brand">ROLEX</p>
-                                    <p class="hcard-model">GMT 마스터 II 펩시</p>
-                                    <p class="hcard-price">22,000,000<em>원</em></p>
-                                </article>
-                                <article class="hcard">
-                                    <div class="hcard-img"><img src="assets/1(487).jpg" alt=""></div>
-                                    <span class="hcard-tag user">개인 판매</span>
-                                    <p class="hcard-brand">FRANCK MULLER</p>
-                                    <p class="hcard-model">뱅가드 V45 다이아</p>
-                                    <p class="hcard-price">32,000,000<em>원</em></p>
-                                </article>
-                                <article class="hcard">
-                                    <div class="hcard-img"><img src="assets/KakaoTalk_20250508_114643182.jpg" alt=""></div>
-                                    <span class="hcard-tag user">개인 판매</span>
-                                    <p class="hcard-brand">VACHERON</p>
-                                    <p class="hcard-model">오버시즈 4500V</p>
-                                    <p class="hcard-price">35,500,000<em>원</em></p>
-                                </article>
-                                <article class="hcard">
-                                    <div class="hcard-img"><img src="assets/KakaoTalk_20250502_221302124_02.jpg" alt=""></div>
-                                    <span class="hcard-tag user">개인 판매</span>
-                                    <p class="hcard-brand">PATEK PHILIPPE</p>
-                                    <p class="hcard-model">노틸러스 5711/1A</p>
-                                    <p class="hcard-price">52,000,000<em>원</em></p>
-                                </article>
-                                <article class="hcard">
-                                    <div class="hcard-img"><img src="assets/KakaoTalk_20250530_145602074.jpg" alt=""></div>
-                                    <span class="hcard-tag user">개인 판매</span>
-                                    <p class="hcard-brand">ROLEX</p>
-                                    <p class="hcard-model">서브마리너 데이트 풀세트</p>
-                                    <p class="hcard-price">15,500,000<em>원</em></p>
                                 </article>
                             </div>
                         </div>
@@ -2269,6 +2216,12 @@
                 <div id="myPageListings"></div>
             </div>
 
+            <!-- 관리자 전용: 판매시계 등록 -->
+            <div class="mypage-section admin-only" hidden id="adminAddListingBox">
+                <h4>판매시계 관리</h4>
+                <button type="button" class="mypage-btn" id="adminAddListingBtn">+ 판매시계 등록</button>
+            </div>
+
             <!-- 화면 설정 (모든 사용자 공통) -->
             <div class="mypage-section" id="displaySettingsBox">
                 <h4>화면 설정</h4>
@@ -2612,6 +2565,40 @@
                 sync();
             });
             sync();
+        })();
+
+        /* ===== 판매시계 카테고리: 대표 브랜드 필터 + 개수 표시 ===== */
+        (function () {
+            var grid = document.querySelector('#panel-ny .col-grid-inner');
+            if (!grid) return;
+            var countEl = document.getElementById('catCount');
+            var brands = document.querySelectorAll('#collection .cat-brand');
+            function updateCount() {
+                if (!countEl) return;
+                var n = 0;
+                grid.querySelectorAll('.hcard').forEach(function (c) { if (c.style.display !== 'none') n++; });
+                countEl.textContent = n;
+            }
+            function applyBrand(b) {
+                b = (b || 'all').toUpperCase();
+                grid.querySelectorAll('.hcard').forEach(function (c) {
+                    var el = c.querySelector('.hcard-brand');
+                    var bd = (c.dataset.brand || (el ? el.textContent : '')).toUpperCase();
+                    c.style.display = (b === 'ALL' || bd.indexOf(b) > -1) ? '' : 'none';
+                });
+                updateCount();
+            }
+            brands.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    brands.forEach(function (x) { x.classList.remove('active'); });
+                    btn.classList.add('active');
+                    applyBrand(btn.dataset.brand);
+                });
+            });
+            updateCount();
+            // DB 상품이 비동기로 추가되므로 잠시 후 개수 재계산
+            setTimeout(updateCount, 1500);
+            setTimeout(updateCount, 4000);
         })();
     </script>
 </body>

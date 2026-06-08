@@ -109,7 +109,8 @@
       }).join('');
     }
     function catOptions(cur) {
-      return [listingCats.brand, listingCats.user].map(function (c) {
+      // 고객판매 마켓 제거 — 벨로르 판매 카테고리만 등록 가능
+      return [listingCats.brand].map(function (c) {
         return '<option' + (cur === c ? ' selected' : '') + '>' + esc(c) + '</option>';
       }).join('');
     }
@@ -391,15 +392,11 @@
       return b;
     }
 
-    // 판매시계 — 벨로르/고객 탭 아래. 현재 활성 탭에 맞춰 카테고리 자동 선택
-    var colTabs = document.querySelector('#collection .col-tabs');
-    if (colTabs) {
-      colAddBtn = makeAddBtn('시계 등록');
-      colTabs.parentNode.insertBefore(colAddBtn, colTabs.nextSibling);
+    // 판매시계 등록 — 마이페이지(관리자 전용) 버튼에서 작성 폼 열기
+    colAddBtn = document.getElementById('adminAddListingBtn');
+    if (colAddBtn) {
       colAddBtn.addEventListener('click', function () {
-        var at = document.querySelector('#collection .col-tab.active');
-        var key = at && at.dataset.coltab;            // 'ny'(벨로르) | 'user'(고객)
-        openListing(null, key === 'user' ? listingCats.user : listingCats.brand);
+        openListing(null, listingCats.brand);
       });
     }
 
