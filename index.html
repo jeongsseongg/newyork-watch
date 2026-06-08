@@ -214,14 +214,14 @@
             <section class="brand-quicklinks">
                 <div class="container">
                     <div class="brand-circle-row" id="brandCircleRow">
-                        <a href="#brand" class="brand-circle" data-nav="brand"><span class="brand-circle-img">ROLEX</span><span class="brand-circle-name">롤렉스</span></a>
-                        <a href="#brand" class="brand-circle" data-nav="brand"><span class="brand-circle-img">PATEK</span><span class="brand-circle-name">파텍필립</span></a>
-                        <a href="#brand" class="brand-circle" data-nav="brand"><span class="brand-circle-img">AP</span><span class="brand-circle-name">오데마피게</span></a>
-                        <a href="#brand" class="brand-circle" data-nav="brand"><span class="brand-circle-img">VC</span><span class="brand-circle-name">바쉐론</span></a>
-                        <a href="#brand" class="brand-circle" data-nav="brand"><span class="brand-circle-img">Cartier</span><span class="brand-circle-name">까르띠에</span></a>
-                        <a href="#brand" class="brand-circle" data-nav="brand"><span class="brand-circle-img">OMEGA</span><span class="brand-circle-name">오메가</span></a>
-                        <a href="#brand" class="brand-circle" data-nav="brand"><span class="brand-circle-img">H</span><span class="brand-circle-name">위블로</span></a>
-                        <a href="#brand" class="brand-circle" data-nav="brand"><span class="brand-circle-img">TAG</span><span class="brand-circle-name">태그호이어</span></a>
+                        <a href="#collection" class="brand-circle brand-circle-featured" data-nav="collection"><span class="brand-circle-img">ROLEX</span><span class="brand-circle-name">롤렉스</span></a>
+                        <a href="#collection" class="brand-circle brand-circle-featured" data-nav="collection"><span class="brand-circle-img">PATEK</span><span class="brand-circle-name">파텍필립</span></a>
+                        <a href="#collection" class="brand-circle" data-nav="collection"><span class="brand-circle-img">AP</span><span class="brand-circle-name">오데마피게</span></a>
+                        <a href="#collection" class="brand-circle" data-nav="collection"><span class="brand-circle-img">VC</span><span class="brand-circle-name">바쉐론</span></a>
+                        <a href="#collection" class="brand-circle" data-nav="collection"><span class="brand-circle-img">Cartier</span><span class="brand-circle-name">까르띠에</span></a>
+                        <a href="#collection" class="brand-circle" data-nav="collection"><span class="brand-circle-img">OMEGA</span><span class="brand-circle-name">오메가</span></a>
+                        <a href="#collection" class="brand-circle" data-nav="collection"><span class="brand-circle-img">H</span><span class="brand-circle-name">위블로</span></a>
+                        <a href="#collection" class="brand-circle" data-nav="collection"><span class="brand-circle-img">TAG</span><span class="brand-circle-name">태그호이어</span></a>
                     </div>
                 </div>
             </section>
@@ -240,7 +240,53 @@
                         <!-- JS가 새 입찰을 위에서 슬라이드 인으로 추가 -->
                     </ul>
 
+                    <div id="liveBoardLockNotice" class="live-lock-notice" hidden>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        금액 · 업체명은 <a href="#" id="liveBoardLoginLink" style="color:var(--green-bright);text-decoration:underline">로그인</a> 후 확인할 수 있습니다
+                    </div>
+
                     <a href="#compare" class="btn btn-primary btn-full" data-nav="compare" style="margin-top:18px">내 시계 견적 받기 →</a>
+                </div>
+            </section>
+
+            <!-- 매입 방법 (한 칸 통합) -->
+            <section class="section section-dark">
+                <div class="container">
+                    <p class="eyebrow center">HOW IT WORKS</p>
+                    <h2 class="section-title center">전국 어디서나 <span class="g">편리하게</span></h2>
+                    <p class="lead center" style="color: rgba(255,255,255,0.65)">방문 · 퀵 · 출장 · 택배 모두 가능합니다</p>
+
+                    <div class="method-card">
+                        <div class="method-row">
+                            <div class="method-thumb"><img src="assets/2026-02-27_이미지자료_131815.jpg" alt=""></div>
+                            <div class="method-info">
+                                <strong>방문 매입</strong>
+                                <p>종로 · 강남 · 청담 3개 매장 직접 방문</p>
+                            </div>
+                        </div>
+                        <div class="method-row">
+                            <div class="method-thumb"><img src="assets/2026-03-18_이미지자료_193209.jpg" alt=""></div>
+                            <div class="method-info">
+                                <strong>퀵 매입</strong>
+                                <p>시계만 보내주시면 1시간 내 견적 + 입금</p>
+                            </div>
+                        </div>
+                        <div class="method-row">
+                            <div class="method-thumb"><img src="assets/2026-04-22_이미지자료_141830.jpeg" alt=""></div>
+                            <div class="method-info">
+                                <strong>출장 매입</strong>
+                                <p>전문 감정사가 원하시는 장소로 방문</p>
+                            </div>
+                        </div>
+                        <div class="method-row">
+                            <div class="method-thumb"><img src="assets/2026-03-20_이미지자료_033813.jpg" alt=""></div>
+                            <div class="method-info">
+                                <strong>택배 매입</strong>
+                                <p>전국 어디서나 안심 택배, 24시간 내 입금</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#compare" class="btn btn-primary btn-full" data-nav="compare" style="margin-top:28px">내 시계 비교견적 신청 →</a>
                 </div>
             </section>
 
@@ -308,48 +354,8 @@
                 </div>
             </section>
 
-            <!-- 매입 방법 (한 칸 통합) -->
-            <section class="section section-dark">
-                <div class="container">
-                    <p class="eyebrow center">HOW IT WORKS</p>
-                    <h2 class="section-title center">전국 어디서나 <span class="g">편리하게</span></h2>
-                    <p class="lead center" style="color: rgba(255,255,255,0.65)">방문 · 퀵 · 출장 · 택배 모두 가능합니다</p>
-
-                    <div class="method-card">
-                        <div class="method-row">
-                            <div class="method-thumb"><img src="assets/2026-02-27_이미지자료_131815.jpg" alt=""></div>
-                            <div class="method-info">
-                                <strong>방문 매입</strong>
-                                <p>종로 · 강남 · 청담 3개 매장 직접 방문</p>
-                            </div>
-                        </div>
-                        <div class="method-row">
-                            <div class="method-thumb"><img src="assets/2026-03-18_이미지자료_193209.jpg" alt=""></div>
-                            <div class="method-info">
-                                <strong>퀵 매입</strong>
-                                <p>시계만 보내주시면 1시간 내 견적 + 입금</p>
-                            </div>
-                        </div>
-                        <div class="method-row">
-                            <div class="method-thumb"><img src="assets/2026-04-22_이미지자료_141830.jpeg" alt=""></div>
-                            <div class="method-info">
-                                <strong>출장 매입</strong>
-                                <p>전문 감정사가 원하시는 장소로 방문</p>
-                            </div>
-                        </div>
-                        <div class="method-row">
-                            <div class="method-thumb"><img src="assets/2026-03-20_이미지자료_033813.jpg" alt=""></div>
-                            <div class="method-info">
-                                <strong>택배 매입</strong>
-                                <p>전국 어디서나 안심 택배, 24시간 내 입금</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <!-- 매입 브랜드 (움직이는 슬라이드) -->
-            <section class="section">
+            <section class="section" style="cursor:pointer" onclick="document.querySelector('[data-nav=brand]').click()">
                 <div class="container">
                     <p class="eyebrow center">PREMIUM BRANDS</p>
                     <h2 class="section-title center">매입하는 <span class="g">명품 브랜드</span></h2>
@@ -390,7 +396,7 @@
             </section>
 
             <!-- 업적 -->
-            <section class="section section-soft">
+            <section class="section section-soft" style="cursor:pointer" onclick="document.querySelector('[data-nav=about]').click()">
                 <div class="container">
                     <p class="eyebrow center">OUR ACHIEVEMENTS</p>
                     <h2 class="section-title center">벨로르의 <span class="g">기록</span></h2>
@@ -407,10 +413,13 @@
                             <strong>20,000+</strong>
                             <span>누적 매입 건수</span>
                         </div>
-                        <div class="ach-card">
+                        <div class="ach-card ach-card-featured" onclick="event.stopPropagation();document.querySelector('[data-nav=brand]').click()">
                             <strong>120곳</strong>
                             <span>제휴 네트워크</span>
                         </div>
+                    </div>
+                    <div style="text-align:center;margin-top:24px">
+                        <a href="#about" class="link-arrow" data-nav="about" onclick="event.stopPropagation()">벨로르 더 알아보기 →</a>
                     </div>
                 </div>
             </section>
@@ -1769,25 +1778,11 @@
     <!-- 푸터 -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-grid footer-grid-simple">
                 <div class="footer-col footer-brand">
-                    <a href="#home" class="footer-logo" data-nav="home"><img src="assets/logo-bellore.png" alt="BELLORE KOREA"></a>
-                    <p>명품시계 최고가 매입 전문<br>SINCE 2008 · 17년</p>
-                    <div class="footer-social">
-                        <a href="https://open.kakao.com/o/sMuCaAFh" target="_blank" rel="noopener" aria-label="카카오톡"><img src="assets/social/kakao.png" alt="카카오톡"></a>
-                        <a href="#" target="_blank" rel="noopener" aria-label="인스타그램"><img src="assets/social/instagram.png" alt="인스타그램"></a>
-                        <a href="#" target="_blank" rel="noopener" aria-label="유튜브"><img src="assets/social/youtube.png" alt="유튜브"></a>
-                        <a href="#" target="_blank" rel="noopener" aria-label="네이버 블로그"><img src="assets/social/naverblog.png" alt="네이버 블로그"></a>
-                        <a href="#" target="_blank" rel="noopener" aria-label="네이버"><img src="assets/social/naver.png" alt="네이버"></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h5>매입 서비스</h5>
-                    <a href="#compare" data-nav="compare">비교견적</a>
-                    <a href="#collection" data-nav="collection">컬렉션</a>
-                    <a href="#brand" data-nav="brand">취급 브랜드</a>
-                    <a href="#repair" data-nav="repair">시계 수리</a>
-                    <a href="#insight" data-nav="insight">커뮤니티 · 후기</a>
+                    <a href="#home" class="footer-logo footer-logo-large" data-nav="home"><img src="assets/logo-bellore.png" alt="BELLORE KOREA"></a>
+                    <p class="footer-tagline">신뢰있는 명품시계 거래의 시작</p>
+                    <p class="footer-since"><strong>SINCE 2008</strong></p>
                 </div>
                 <div class="footer-col">
                     <h5>고객센터</h5>
@@ -1799,7 +1794,7 @@
             <div class="footer-bottom">
                 <div class="footer-company">
                     <p><strong>(주) 벨로르</strong> · 종로 · 강남 · 청담 매장 운영</p>
-                    <p>국내+해외 120곳 제휴처 · SINCE 2008</p>
+                    <p><a href="#brand" data-nav="brand" style="color:inherit;text-decoration:underline">국내+해외 120곳 제휴처</a> · SINCE 2008</p>
                 </div>
             </div>
 
