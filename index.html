@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#000000">
+    <!-- 화면 설정(다크/와이드)을 첫 페인트 전에 적용해 깜빡임(FOUC) 방지 -->
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('bellore_theme') === 'dark')
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                if (localStorage.getItem('bellore_width') === 'full')
+                    document.documentElement.setAttribute('data-width', 'full');
+            } catch (e) {}
+        })();
+    </script>
     <title>벨로르 | 신뢰있는 명품거래의 시작</title>
     <meta name="description" content="BELLORE(벨로르) · 2008년부터 운영, 40년 감정 전문가. 롤렉스, 파텍필립, AP 등 명품시계 최고가 매입. 국내외 120곳 제휴처 · 24시간 연중무휴">
     <meta name="keywords" content="BELLORE, 벨로르, 벨로르코리아, BELLORE KOREA, 명품시계매입, 롤렉스매입, 파텍필립매입, 오데마피게매입, 명품시계판매, 중고명품시계, 시계수리, 비교견적, 시계매입시세">
@@ -2249,6 +2260,29 @@
                 <div id="myPageListings"></div>
             </div>
 
+            <!-- 화면 설정 (모든 사용자 공통) -->
+            <div class="mypage-section" id="displaySettingsBox">
+                <h4>화면 설정</h4>
+                <div class="setting-row">
+                    <div class="setting-label">
+                        <b>다크 모드</b>
+                        <span>어두운 테마로 표시합니다</span>
+                    </div>
+                    <button type="button" class="switch" id="toggleDark" role="switch" aria-checked="false" aria-label="다크 모드 전환">
+                        <span class="switch-knob"></span>
+                    </button>
+                </div>
+                <div class="setting-row pc-only-setting">
+                    <div class="setting-label">
+                        <b>와이드 모드</b>
+                        <span>PC에서 넓은 화면으로 표시 (최대 1200px)</span>
+                    </div>
+                    <button type="button" class="switch" id="toggleWide" role="switch" aria-checked="false" aria-label="와이드 모드 전환">
+                        <span class="switch-knob"></span>
+                    </button>
+                </div>
+            </div>
+
             <button type="button" class="login-btn login-default" id="btnLogout">로그아웃</button>
         </div>
     </div>
@@ -2565,6 +2599,29 @@
                 });
             });
         }
+
+        /* ===== 화면 설정: 다크 모드 / 와이드 모드 토글 ===== */
+        (function () {
+            var root = document.documentElement;
+            var dark = document.getElementById('toggleDark');
+            var wide = document.getElementById('toggleWide');
+            function sync() {
+                if (dark) dark.setAttribute('aria-checked', root.getAttribute('data-theme') === 'dark' ? 'true' : 'false');
+                if (wide) wide.setAttribute('aria-checked', root.getAttribute('data-width') === 'full' ? 'true' : 'false');
+            }
+            function save(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
+            if (dark) dark.addEventListener('click', function () {
+                if (root.getAttribute('data-theme') === 'dark') { root.removeAttribute('data-theme'); save('bellore_theme', 'light'); }
+                else { root.setAttribute('data-theme', 'dark'); save('bellore_theme', 'dark'); }
+                sync();
+            });
+            if (wide) wide.addEventListener('click', function () {
+                if (root.getAttribute('data-width') === 'full') { root.removeAttribute('data-width'); save('bellore_width', 'app'); }
+                else { root.setAttribute('data-width', 'full'); save('bellore_width', 'full'); }
+                sync();
+            });
+            sync();
+        })();
     </script>
 </body>
 </html>
