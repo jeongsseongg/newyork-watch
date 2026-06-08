@@ -62,6 +62,7 @@
         initPwaModal();
         initAccountUI();
         initHeroCarousel();
+        initLiveBoardLockLink();
     }
 
     /* ============ 히어로 배너 캐러셀 ============ */
@@ -621,6 +622,9 @@
     }
 
     /* ============ 홈: LIVE 비교견적 진행 현황 보드 ============ */
+    var _liveBoardLoggedIn = false;
+    var _liveBoardRender = null;
+
     var BIDDERS_POOL = [
         { code: 'K', kind: '감정사' }, { code: 'T', kind: '워치' }, { code: 'H', kind: '딜러' },
         { code: 'D', kind: '감정사' }, { code: 'M', kind: '워치' }, { code: 'G', kind: '딜러' },
@@ -668,13 +672,18 @@
         else if (item.status === 'pending') { badgeClass = 'badge-pending'; badgeText = '승인중'; }
         else if (item.status === 'end') { badgeClass = 'badge-end'; badgeText = '종료'; }
 
+        var locked = !_liveBoardLoggedIn;
         var bodyHtml;
         if (item.status === 'pending') {
             bodyHtml = '<p class="live-row-by">정가품 감정 진행중</p>';
         } else if (item.status === 'done' || item.status === 'end') {
-            bodyHtml = '<p class="live-row-by"><b>' + item.bidder + '</b> 최종 <span class="amount">' + fmt(item.amount * 10000) + '원</span></p>';
+            var bidderTxt = locked ? '<b class="live-mosaic">●●● 업체</b>' : '<b>' + item.bidder + '</b>';
+            var amtTxt = locked ? '<span class="amount live-mosaic">●●●만원</span>' : '<span class="amount">' + fmt(item.amount * 10000) + '원</span>';
+            bodyHtml = '<p class="live-row-by">' + bidderTxt + ' 최종 ' + amtTxt + '</p>';
         } else {
-            bodyHtml = '<p class="live-row-by"><b>' + item.bidder + '</b>가 <span class="amount">' + fmt(item.amount * 10000) + '원</span> 입찰</p>';
+            var bidderTxt2 = locked ? '<b class="live-mosaic">●●● 업체</b>' : '<b>' + item.bidder + '</b>';
+            var amtTxt2 = locked ? '<span class="amount live-mosaic">●●●만원</span>' : '<span class="amount">' + fmt(item.amount * 10000) + '원</span>';
+            bodyHtml = '<p class="live-row-by">' + bidderTxt2 + '가 ' + amtTxt2 + ' 입찰</p>';
         }
 
         return '' +
@@ -721,7 +730,10 @@
 
         function render() {
             board.innerHTML = items.slice(0, 4).map(buildRow).join('');
+            var notice = $('#liveBoardLockNotice');
+            if (notice) notice.hidden = _liveBoardLoggedIn;
         }
+        _liveBoardRender = render;
         render();
 
         // 주기적으로 새 입찰 추가 (위에서 슬라이드 인)
@@ -767,6 +779,16 @@
         }
 
         setInterval(tick, 4000);
+    }
+
+    function initLiveBoardLockLink() {
+        var link = $('#liveBoardLoginLink');
+        if (link) {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                openLoginModal();
+            });
+        }
     }
 
     /* ============ 비교견적 페이지: 한 시계 입찰 진행 (자연스러운 카운트업) ============ */
@@ -1045,6 +1067,9 @@
             if (info && info.isAdmin) { enableAdminMode(); }
             else if (window.disableAdminMode) { disableAdminMode(); }
             updateAuthUI(user);
+            // 비교견적 라이브보드 모자이크 갱신
+            _liveBoardLoggedIn = !!user;
+            if (_liveBoardRender) _liveBoardRender();
         });
 
         // SDK 로드 완료 후 실시간 구독 시작

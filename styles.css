@@ -5253,3 +5253,67 @@ body.admin-mode .hcard-dynamic .hcard-admin { display: flex; }
 .banner-acts button:hover { background: #f3f3f3; }
 .banner-active-row { display: flex !important; flex-direction: row !important; align-items: center; gap: 8px; }
 .banner-active-row input { width: auto; }
+
+/* ============ 브랜드 원형 강조 (롤렉스, 파텍필립) ============ */
+.brand-circle-featured .brand-circle-img {
+    width: 74px; height: 74px;
+    background: #111;
+    color: #c9a96e;
+    border: 2px solid #c9a96e;
+    box-shadow: 0 4px 16px rgba(201,169,110,.25);
+    font-size: 10px;
+}
+.brand-circle-featured .brand-circle-name {
+    font-weight: 600;
+    color: #111;
+}
+.brand-circle-featured:hover .brand-circle-img {
+    background: #c9a96e;
+    color: #111;
+}
+
+/* ============ 라이브보드 모자이크 (비회원) ============ */
+.live-mosaic {
+    filter: blur(4px);
+    user-select: none;
+    pointer-events: none;
+    color: inherit;
+}
+.live-lock-notice {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-2, #888);
+    background: rgba(0,0,0,.04);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-top: 12px;
+}
+.live-lock-notice svg { flex: 0 0 auto; opacity: .6; }
+
+/* ============ 업적카드 강조 (120곳) ============ */
+.ach-card-featured {
+    border: 1px solid #c9a96e !important;
+    background: linear-gradient(135deg, #fffbf2, #fff9ec) !important;
+    cursor: pointer;
+}
+.ach-card-featured strong { color: #b8832a !important; }
+
+/* ============ 푸터 심플화 ============ */
+.footer-grid-simple { grid-template-columns: 1fr 1fr !important; }
+.footer-logo-large img { height: 52px !important; }
+.footer-tagline {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255,255,255,.9);
+    margin-bottom: 6px;
+    margin-top: 4px;
+}
+.footer-since {
+    font-size: 13px;
+    color: #c9a96e;
+    letter-spacing: .5px;
+    margin-bottom: 0;
+}
+.footer-since strong { color: #c9a96e; font-weight: 700; }
