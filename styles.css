@@ -5923,3 +5923,26 @@ body.admin-mode .hcard-dynamic .hcard-admin { display: flex; }
 .hcard-timesale.ended { color: var(--text-3); }
 .hcard-timesale.ended b { background: var(--text-3); }
 .lp-tag-solo { padding: 2px 0; }
+
+/* ============================================================
+   매물 그리드 열 수 통일 — 모바일/일반 2열, 와이드 모드 3열
+   (홈·판매시계·카테고리 그리드 동일 규격)
+   ============================================================ */
+.home-sale-grid,
+.col-grid-inner,
+.hcard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    align-items: start;          /* 카드 높이 제각각이어도 윗줄 정렬 */
+}
+html[data-width="full"] .home-sale-grid,
+html[data-width="full"] .col-grid-inner,
+html[data-width="full"] .hcard-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+}
+/* 카드 이미지 여백 살짝 줄여 더 큼지막하게 */
+.home-sale-grid .hcard-img,
+.col-grid-inner .hcard-img,
+.hcard-grid .hcard-img { padding: 10px; }

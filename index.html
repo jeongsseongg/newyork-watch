@@ -2078,6 +2078,14 @@
                 <p class="mypage-role" id="myPageRole" hidden></p>
             </div>
 
+            <!-- 화면 설정 (상단·간단) -->
+            <div class="mypage-section displaysettings-top pc-only-setting" id="displaySettingsBox">
+                <div class="setting-row">
+                    <div class="setting-label"><b>와이드 모드</b><span>PC 넓은 화면</span></div>
+                    <button type="button" class="switch" id="toggleWide" role="switch" aria-checked="false" aria-label="와이드 모드 전환"><span class="switch-knob"></span></button>
+                </div>
+            </div>
+
             <button type="button" class="mypage-noti" id="btnNoti">
                 <span class="mypage-noti-left"><span class="mypage-noti-ic">🔔</span> 알림</span>
                 <span class="noti-badge" id="notiBadge" hidden>0</span>
@@ -2186,20 +2194,6 @@
             <div class="mypage-section admin-only" hidden id="adminAddListingBox">
                 <h4>판매시계 관리</h4>
                 <button type="button" class="mypage-btn" id="adminAddListingBtn">+ 판매시계 등록</button>
-            </div>
-
-            <!-- 화면 설정 (모든 사용자 공통) -->
-            <div class="mypage-section" id="displaySettingsBox">
-                <h4>화면 설정</h4>
-                <div class="setting-row pc-only-setting">
-                    <div class="setting-label">
-                        <b>와이드 모드</b>
-                        <span>PC에서 넓은 화면으로 표시 (최대 1200px)</span>
-                    </div>
-                    <button type="button" class="switch" id="toggleWide" role="switch" aria-checked="false" aria-label="와이드 모드 전환">
-                        <span class="switch-knob"></span>
-                    </button>
-                </div>
             </div>
 
             <button type="button" class="login-btn login-default" id="btnLogout">로그아웃</button>
