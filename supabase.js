@@ -222,7 +222,8 @@
   Backend.signInWithKakao = function () {
     return sb.auth.signInWithOAuth({
       provider: 'kakao',
-      options: { redirectTo: location.origin + location.pathname }
+      // 닉네임만 요청 — 이메일/프로필사진 동의항목 미설정으로 인한 KOE205 방지
+      options: { scopes: 'profile_nickname', redirectTo: location.origin + location.pathname }
     }).then(function (res) {
       if (res.error) throw res.error;
       return { displayName: '' };
