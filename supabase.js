@@ -389,6 +389,7 @@
       price: l.price || 0,
       category: l.category || CATS.listing.brand,
       status: l.status,
+      tags: l.tags || [],
       photos: (l.image_urls && l.image_urls.length) ? l.image_urls : (l.image_url ? [l.image_url] : [])
     };
   }
@@ -423,6 +424,7 @@
         price: data.price || null,
         category: data.category || CATS.listing.brand,
         status: data.status || 'on_sale',
+        tags: data.tags || [],
         image_urls: urls,
         image_url: urls[0] || null
       }).then(function (res) { if (res.error) throw res.error; refreshListingFeeds(); });
@@ -445,6 +447,7 @@
       if (data.price != null) patch.price = data.price;
       if (data.status != null) patch.status = data.status;
       if (data.category != null) patch.category = data.category;
+      if (data.tags != null) patch.tags = data.tags;
       var existing = data.existingPhotos || [];
       if (newUrls.length || data.existingPhotos) {
         var all = existing.concat(newUrls).slice(0, 10);

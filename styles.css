@@ -5902,3 +5902,9 @@ body.admin-mode .hcard-dynamic .hcard-admin { display: flex; }
 .lp-form label { display: flex; flex-direction: column; gap: 7px; }
 .lp-form label > span { font-size: 13px; font-weight: 600; color: var(--text-2); }
 .lp-photohead .upload-grid { margin-top: 4px; }
+
+/* 시계 등록/수정 — 카테고리 노출 체크박스 */
+.lp-tags { display: flex; flex-direction: column; gap: 10px; padding: 4px 0 2px; }
+.lp-tags-label { font-size: 13px; font-weight: 600; color: var(--text-2); }
+.lp-tag { display: flex; align-items: center; gap: 10px; font-size: 14.5px; color: var(--text); cursor: pointer; }
+.lp-tag input { width: 20px; height: 20px; flex-shrink: 0; accent-color: #111; }

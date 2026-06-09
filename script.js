@@ -1232,6 +1232,7 @@
             NWBackend.subscribeProducts(function (rows) {
                 renderProducts(rows);
                 renderHomeProducts(rows);
+                renderCatPages(rows);
             });
 
             // 로그인/권한 상태에 따라 구독을 켜고 끈다
@@ -1362,6 +1363,40 @@
             frag.appendChild(card);
         });
         grid.appendChild(frag);
+    }
+
+    // 상단 카테고리 탭 페이지(할인시작/미사용신품/오늘의시계/업데이트)를 DB 상품으로 채움
+    function fillCatGrid(grid, rows) {
+        if (!grid) return;
+        $$('.hcard-dynamic', grid).forEach(function (el) { el.remove(); });
+        var statics = $$('.hcard', grid).filter(function (c) { return !c.classList.contains('hcard-dynamic'); });
+        if (!rows.length) { statics.forEach(function (c) { c.style.display = ''; }); return; }
+        statics.forEach(function (c) { c.style.display = 'none'; });
+        var frag = document.createDocumentFragment();
+        rows.forEach(function (it) {
+            var priceHtml = it.price ? (fmt(it.price) + '<em>원</em>') : '가격 문의<em></em>';
+            var card = document.createElement('article');
+            card.className = 'hcard hcard-dynamic';
+            card.dataset.pid = it.id;
+            card.dataset.brand = it.brand;
+            card.dataset.model = it.model;
+            card.dataset.price = it.price || 0;
+            card.innerHTML =
+                '<div class="hcard-img"><img src="' + esc(listingImg(it)) + '" alt=""></div>' +
+                '<p class="hcard-brand">' + esc(it.brand) + '</p>' +
+                '<p class="hcard-model">' + esc(it.model) + '</p>' +
+                '<p class="hcard-price">' + priceHtml + '</p>';
+            frag.appendChild(card);
+        });
+        grid.appendChild(frag);
+    }
+    function renderCatPages(rows) {
+        rows = rows || [];
+        function tagged(t) { return rows.filter(function (it) { return (it.tags || []).indexOf(t) !== -1; }); }
+        fillCatGrid($('#catUpdateGrid'), rows.slice(0, 30));   // 업데이트 = 최신 등록순 전체
+        fillCatGrid($('#catSaleGrid'), tagged('sale'));         // 🔥 할인시작
+        fillCatGrid($('#catNewGrid'), tagged('new'));           // 미사용신품
+        fillCatGrid($('#catTodayGrid'), tagged('today'));       // 오늘의시계
     }
 
     // 관리자: 승인 대기 매물 목록
@@ -2469,12 +2504,7 @@
             }
         });
 
-        var kakaoBtn = $('#loginKakao');
-        if (kakaoBtn) {
-            kakaoBtn.addEventListener('click', function () {
-                window.open('https://open.kakao.com/o/sMuCaAFh', '_blank');
-            });
-        }
+        // (카카오 버튼은 initAccountUI 에서 실제 카카오 로그인으로 연결됨 — 상담 오픈채팅 핸들러 제거)
 
         // 헤더 검색바 → 판매시계 컬렉션에서 브랜드/모델 검색
         var headerSearch = $('#headerSearch');

@@ -106,6 +106,7 @@
         return '<option value="' + s[0] + '"' + (cur === s[0] ? ' selected' : '') + '>' + s[1] + '</option>';
       }).join('');
     }
+    function tagOn(item, t) { return !!(item && item.tags && item.tags.indexOf(t) !== -1); }
 
     // 상세페이지(.product-page) 셸을 재사용한 전체화면 등록/수정 페이지
     var listingPage = document.createElement('div');
@@ -141,6 +142,11 @@
           '<label><span>모델 / 레퍼런스 *</span><input name="model" placeholder="예: 데이트저스트 36" value="' + esc(item ? item.model : '') + '" required></label>' +
           '<label><span>판매가 (숫자, 비우면 가격문의)</span><input name="price" type="number" inputmode="numeric" placeholder="예: 22800000" value="' + (item && item.price ? item.price : '') + '"></label>' +
           '<label><span>판매 상태</span><select name="status">' + statusOptions(item ? item.status : 'on_sale') + '</select></label>' +
+          '<div class="lp-tags"><span class="lp-tags-label">카테고리 노출 (상단 탭에 함께 표시)</span>' +
+            '<label class="lp-tag"><input type="checkbox" name="tag_sale"' + (tagOn(item, 'sale') ? ' checked' : '') + '><span>🔥 할인시작</span></label>' +
+            '<label class="lp-tag"><input type="checkbox" name="tag_new"' + (tagOn(item, 'new') ? ' checked' : '') + '><span>미사용신품</span></label>' +
+            '<label class="lp-tag"><input type="checkbox" name="tag_today"' + (tagOn(item, 'today') ? ' checked' : '') + '><span>오늘의시계</span></label>' +
+          '</div>' +
         '</form>';
       lPicker = photoPicker($('#listingPhotos', listingPage), 5);
       $('#listingForm', listingPage).addEventListener('submit', function (e) {
@@ -150,7 +156,11 @@
         var model = String(fd.get('model') || '').trim();
         if (!brand || !model) { alert('브랜드와 모델을 입력하세요.'); return; }
         var price = parseInt(String(fd.get('price') || '').replace(/[^0-9]/g, ''), 10) || null;
-        var payload = { brand: brand, model: model, price: price, category: fd.get('category'), status: fd.get('status'), photos: lPicker.files };
+        var tags = [];
+        if (fd.get('tag_sale')) tags.push('sale');
+        if (fd.get('tag_new')) tags.push('new');
+        if (fd.get('tag_today')) tags.push('today');
+        var payload = { brand: brand, model: model, price: price, category: fd.get('category'), status: fd.get('status'), tags: tags, photos: lPicker.files };
         var btn = $('#lpSubmit', listingPage); btn.disabled = true; btn.textContent = '저장 중…';
         var p = lEditId
           ? B.updateProduct(lEditId, Object.assign({ existingPhotos: lExisting }, payload))
