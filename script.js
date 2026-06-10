@@ -1344,6 +1344,8 @@
             card.dataset.brand = it.brand;
             card.dataset.model = it.model;
             card.dataset.price = it.price || 0;
+            card.dataset.pack = it.pack || '';
+            card.dataset.size = it.size_mm || '';
             card.innerHTML =
                 '<div class="hcard-img"><img src="' + esc(listingImg(it)) + '" alt=""></div>' +
                 '<p class="hcard-brand">' + esc(it.brand) + '</p>' +
@@ -1377,6 +1379,8 @@
             card.dataset.brand = it.brand;
             card.dataset.model = it.model;
             card.dataset.price = it.price || 0;
+            card.dataset.pack = it.pack || '';
+            card.dataset.size = it.size_mm || '';
             card.innerHTML =
                 '<div class="hcard-img"><img src="' + esc(listingImg(it)) + '" alt=""></div>' +
                 '<p class="hcard-brand">' + esc(it.brand) + '</p>' +

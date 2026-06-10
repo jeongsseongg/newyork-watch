@@ -394,6 +394,8 @@
       status: l.status,
       tags: l.tags || [],
       condition: l.condition || '',
+      pack: l.pack || '',
+      size_mm: l.size_mm || null,
       has_warranty: !!l.has_warranty,
       accessories: l.accessories || '',
       created_at: l.created_at || null,
@@ -433,6 +435,8 @@
         status: data.status || 'on_sale',
         tags: data.tags || [],
         condition: data.condition || null,
+        pack: data.pack || null,
+        size_mm: data.size_mm || null,
         has_warranty: !!data.has_warranty,
         accessories: data.accessories || null,
         image_urls: urls,
@@ -459,6 +463,8 @@
       if (data.category != null) patch.category = data.category;
       if (data.tags != null) patch.tags = data.tags;
       if (data.condition != null) patch.condition = data.condition;
+      if (data.pack != null) patch.pack = data.pack;
+      if (data.size_mm != null) patch.size_mm = data.size_mm;
       if (data.has_warranty != null) patch.has_warranty = data.has_warranty;
       if (data.accessories != null) patch.accessories = data.accessories;
       var existing = data.existingPhotos || [];

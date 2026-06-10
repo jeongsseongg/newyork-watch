@@ -1044,10 +1044,18 @@
 
                     <!-- 필터 드롭다운 -->
                     <div class="cat-filters">
-                        <button class="cat-filter" type="button">카테고리<i>▾</i></button>
-                        <button class="cat-filter" type="button">브랜드<i>▾</i></button>
-                        <button class="cat-filter" type="button">등급<i>▾</i></button>
-                        <button class="cat-filter" type="button">사이즈<i>▾</i></button>
+                        <select class="cat-filter-sel" id="filterPack" aria-label="등급">
+                            <option value="">등급 전체</option>
+                            <option value="풀세트">풀세트</option>
+                            <option value="보증서없음">보증서 없음</option>
+                            <option value="단품">단품</option>
+                        </select>
+                        <select class="cat-filter-sel" id="filterSize" aria-label="사이즈">
+                            <option value="">사이즈 전체</option>
+                            <option value="-36">36mm 이하</option>
+                            <option value="37-40">37~40mm</option>
+                            <option value="41-">41mm 이상</option>
+                        </select>
                     </div>
 
                     <!-- 토글 필터 -->
@@ -2542,12 +2550,20 @@
                 grid.querySelectorAll('.hcard').forEach(function (c) { if (c.style.display !== 'none') n++; });
                 countEl.textContent = n;
             }
-            function applyBrand(b) {
-                b = (b || 'all').toUpperCase();
+            var fBrand = 'all', fPack = '', fSize = '';
+            function applyFilters() {
+                var b = (fBrand || 'all').toUpperCase();
                 grid.querySelectorAll('.hcard').forEach(function (c) {
                     var el = c.querySelector('.hcard-brand');
                     var bd = (c.dataset.brand || (el ? el.textContent : '')).toUpperCase();
-                    c.style.display = (b === 'ALL' || bd.indexOf(b) > -1) ? '' : 'none';
+                    var pk = c.dataset.pack || '';
+                    var sz = parseInt(c.dataset.size, 10) || 0;
+                    var ok = (b === 'ALL' || bd.indexOf(b) > -1);
+                    if (ok && fPack) ok = (pk === fPack);
+                    if (ok && fSize === '-36') ok = (sz > 0 && sz <= 36);
+                    else if (ok && fSize === '37-40') ok = (sz >= 37 && sz <= 40);
+                    else if (ok && fSize === '41-') ok = (sz >= 41);
+                    c.style.display = ok ? '' : 'none';
                 });
                 updateCount();
             }
@@ -2555,13 +2571,15 @@
                 btn.addEventListener('click', function () {
                     brands.forEach(function (x) { x.classList.remove('active'); });
                     btn.classList.add('active');
-                    applyBrand(btn.dataset.brand);
+                    fBrand = btn.dataset.brand; applyFilters();
                 });
             });
+            var fp = document.getElementById('filterPack'), fz = document.getElementById('filterSize');
+            if (fp) fp.addEventListener('change', function () { fPack = fp.value; applyFilters(); });
+            if (fz) fz.addEventListener('change', function () { fSize = fz.value; applyFilters(); });
             updateCount();
-            // DB 상품이 비동기로 추가되므로 잠시 후 개수 재계산
-            setTimeout(updateCount, 1500);
-            setTimeout(updateCount, 4000);
+            setTimeout(applyFilters, 1500);
+            setTimeout(applyFilters, 4000);
         })();
     </script>
 </body>

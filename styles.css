@@ -6075,3 +6075,7 @@ html[data-width="full"] .hcard-grid {
 .wish-card .wish-remove:active { transform: scale(.9); }
 .wish-card .wish-card-acts { display: block; padding: 10px 10px 12px; }
 .wish-card .wish-card-acts .wish-addcart { width: 100%; }
+
+
+/* 판매시계 필터 셀렉트(등급·사이즈) */
+.cat-filter-sel { flex: 0 0 auto; padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; background: var(--white); color: var(--text-2); font-size: 13px; font-family: inherit; cursor: pointer; }

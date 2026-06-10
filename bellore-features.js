@@ -113,6 +113,11 @@
         return '<option value="' + esc(c) + '"' + (cur === c ? ' selected' : '') + '>' + label + '</option>';
       }).join('');
     }
+    function packOptions(cur) {
+      return ['', '풀세트', '보증서없음', '단품'].map(function (c) {
+        return '<option value="' + esc(c) + '"' + (cur === c ? ' selected' : '') + '>' + (c || '선택 안 함') + '</option>';
+      }).join('');
+    }
 
     // 상세페이지(.product-page) 셸을 재사용한 전체화면 등록/수정 페이지
     var listingPage = document.createElement('div');
@@ -149,6 +154,8 @@
           '<label><span>판매가 (숫자, 비우면 가격문의)</span><input name="price" type="number" inputmode="numeric" placeholder="예: 22800000" value="' + (item && item.price ? item.price : '') + '"></label>' +
           '<label><span>판매 상태</span><select name="status">' + statusOptions(item ? item.status : 'on_sale') + '</select></label>' +
           '<label><span>컨디션</span><select name="condition">' + condOptions(item ? item.condition : '') + '</select></label>' +
+          '<label><span>구성 등급</span><select name="pack">' + packOptions(item ? item.pack : '') + '</select></label>' +
+          '<label><span>사이즈 (mm)</span><input name="size_mm" type="number" inputmode="numeric" placeholder="예: 41" value="' + (item && item.size_mm ? item.size_mm : '') + '"></label>' +
           '<label><span>구성품</span><input name="accessories" placeholder="예: 풀세트(보증서·박스·정품택)" value="' + esc(item ? item.accessories : '') + '"></label>' +
           '<label class="lp-tag lp-tag-solo"><input type="checkbox" name="has_warranty"' + (item && item.has_warranty ? ' checked' : '') + '><span>정품 보증서 포함</span></label>' +
           '<div class="lp-tags"><span class="lp-tags-label">카테고리 노출 (상단 탭에 함께 표시)</span>' +
@@ -169,7 +176,7 @@
         if (fd.get('tag_sale')) tags.push('sale');
         if (fd.get('tag_new')) tags.push('new');
         if (fd.get('tag_today')) tags.push('today');
-        var payload = { brand: brand, model: model, price: price, category: fd.get('category'), status: fd.get('status'), tags: tags, condition: String(fd.get('condition') || ''), has_warranty: !!fd.get('has_warranty'), accessories: String(fd.get('accessories') || '').trim(), photos: lPicker.files };
+        var payload = { brand: brand, model: model, price: price, category: fd.get('category'), status: fd.get('status'), tags: tags, condition: String(fd.get('condition') || ''), has_warranty: !!fd.get('has_warranty'), accessories: String(fd.get('accessories') || '').trim(), pack: String(fd.get('pack') || ''), size_mm: parseInt(fd.get('size_mm'), 10) || null, photos: lPicker.files };
         var btn = $('#lpSubmit', listingPage); btn.disabled = true; btn.textContent = '저장 중…';
         var p = lEditId
           ? B.updateProduct(lEditId, Object.assign({ existingPhotos: lExisting }, payload))
