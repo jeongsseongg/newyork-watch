@@ -150,9 +150,9 @@
           '<label><span>판매 상태</span><select name="status">' + statusOptions(item ? item.status : 'on_sale') + '</select></label>' +
           '<label><span>컨디션</span><select name="condition">' + condOptions(item ? item.condition : '') + '</select></label>' +
           '<label><span>구성품</span><input name="accessories" placeholder="예: 풀세트(보증서·박스·정품택)" value="' + esc(item ? item.accessories : '') + '"></label>' +
-          '<label class="lp-tag lp-tag-solo"><input type="checkbox" name="has_warranty"' + (item && item.has_warranty ? ' checked' : '') + '><span>✅ 정품 보증서 포함</span></label>' +
+          '<label class="lp-tag lp-tag-solo"><input type="checkbox" name="has_warranty"' + (item && item.has_warranty ? ' checked' : '') + '><span>정품 보증서 포함</span></label>' +
           '<div class="lp-tags"><span class="lp-tags-label">카테고리 노출 (상단 탭에 함께 표시)</span>' +
-            '<label class="lp-tag"><input type="checkbox" name="tag_sale"' + (tagOn(item, 'sale') ? ' checked' : '') + '><span>🔥 할인시작</span></label>' +
+            '<label class="lp-tag"><input type="checkbox" name="tag_sale"' + (tagOn(item, 'sale') ? ' checked' : '') + '><span>TIME SALE (할인 시작)</span></label>' +
             '<label class="lp-tag"><input type="checkbox" name="tag_new"' + (tagOn(item, 'new') ? ' checked' : '') + '><span>미사용신품</span></label>' +
             '<label class="lp-tag"><input type="checkbox" name="tag_today"' + (tagOn(item, 'today') ? ' checked' : '') + '><span>오늘의시계</span></label>' +
           '</div>' +

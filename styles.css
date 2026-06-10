@@ -5963,10 +5963,11 @@ html[data-width="full"] .hcard-grid {
 /* 카테고리 오버레이 배지 위치 통일 */
 .hcard-new-badge, .hcard-sale-badge, .hcard-today-label { z-index: 3; }
 
-/* 깨진 카드 이미지 플레이스홀더 (규격 유지, 빈 네모 방지) */
-.hcard-img.img-broken { position: relative; background: #f2f2f2; }
+/* 깨진/없는 카드 이미지 → 깔끔한 브랜드 플레이스홀더 (박스 규격 유지) */
+.hcard-img.img-broken { position: relative; background: #f4f4f4; }
 .hcard-img.img-broken::after {
-    content: '⌚'; position: absolute; inset: 0;
+    content: 'BELLORE'; position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
-    font-size: 34px; opacity: .2; color: var(--text);
+    font-family: var(--serif); letter-spacing: 3px; font-size: 13px;
+    color: #c4c4c4; font-weight: 600;
 }

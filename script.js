@@ -1288,7 +1288,7 @@
     function cardBadgesHTML(it) {
         // 고객이 궁금해하는 핵심 정보(정품보증 · 구성품 · 컨디션)를 깔끔하게 정리
         var html = '';
-        if (it.has_warranty) html += '<span class="hcard-warranty">✓ 정품보증</span>';
+        if (it.has_warranty) html += '<span class="hcard-warranty">정품보증</span>';
         var parts = [];
         if (it.accessories) parts.push(esc(it.accessories));
         if (it.condition) parts.push(esc(it.condition));
