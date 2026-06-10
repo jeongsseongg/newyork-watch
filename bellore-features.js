@@ -176,7 +176,9 @@
         if (fd.get('tag_sale')) tags.push('sale');
         if (fd.get('tag_new')) tags.push('new');
         if (fd.get('tag_today')) tags.push('today');
-        var payload = { brand: brand, model: model, price: price, category: fd.get('category'), status: fd.get('status'), tags: tags, condition: String(fd.get('condition') || ''), has_warranty: !!fd.get('has_warranty'), accessories: String(fd.get('accessories') || '').trim(), pack: String(fd.get('pack') || ''), size_mm: parseInt(fd.get('size_mm'), 10) || null, photos: lPicker.files };
+        var saleOn = tags.indexOf('sale') !== -1;
+        var saleStart = saleOn ? ((item && item.tags && item.tags.indexOf('sale') !== -1 && item.sale_started_at) ? item.sale_started_at : new Date().toISOString()) : null;
+        var payload = { brand: brand, model: model, price: price, category: fd.get('category'), status: fd.get('status'), tags: tags, condition: String(fd.get('condition') || ''), has_warranty: !!fd.get('has_warranty'), accessories: String(fd.get('accessories') || '').trim(), pack: String(fd.get('pack') || ''), size_mm: parseInt(fd.get('size_mm'), 10) || null, sale_started_at: saleStart, photos: lPicker.files };
         var btn = $('#lpSubmit', listingPage); btn.disabled = true; btn.textContent = '저장 중…';
         var p = lEditId
           ? B.updateProduct(lEditId, Object.assign({ existingPhotos: lExisting }, payload))

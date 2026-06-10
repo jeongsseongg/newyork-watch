@@ -399,6 +399,7 @@
       has_warranty: !!l.has_warranty,
       accessories: l.accessories || '',
       created_at: l.created_at || null,
+      sale_started_at: l.sale_started_at || null,
       photos: (l.image_urls && l.image_urls.length) ? l.image_urls : (l.image_url ? [l.image_url] : [])
     };
   }
@@ -435,6 +436,7 @@
         status: data.status || 'on_sale',
         tags: data.tags || [],
         condition: data.condition || null,
+        sale_started_at: data.sale_started_at || null,
         pack: data.pack || null,
         size_mm: data.size_mm || null,
         has_warranty: !!data.has_warranty,
@@ -463,6 +465,7 @@
       if (data.category != null) patch.category = data.category;
       if (data.tags != null) patch.tags = data.tags;
       if (data.condition != null) patch.condition = data.condition;
+      if (data.sale_started_at !== undefined) patch.sale_started_at = data.sale_started_at;
       if (data.pack != null) patch.pack = data.pack;
       if (data.size_mm != null) patch.size_mm = data.size_mm;
       if (data.has_warranty != null) patch.has_warranty = data.has_warranty;
