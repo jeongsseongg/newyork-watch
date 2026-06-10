@@ -1272,6 +1272,17 @@
         return (it.photos && it.photos[0]) ? it.photos[0] : 'assets/images.jpg';
     }
 
+    // 깨진 카드 이미지는 깔끔한 시계 플레이스홀더로 대체(규격 유지)
+    document.addEventListener('error', function (e) {
+        var img = e.target;
+        if (!img || img.tagName !== 'IMG' || !img.closest) return;
+        var box = img.closest('.hcard-img');
+        if (box && !box.classList.contains('img-broken')) {
+            box.classList.add('img-broken');
+            img.style.visibility = 'hidden';
+        }
+    }, true);
+
     // 매물 카드에 한눈에 보이는 정보 배지(보증서·컨디션·구성품) + TIME SALE 카운트다운
     var SALE_HOURS = 72;
     function cardBadgesHTML(it) {
