@@ -118,6 +118,33 @@
         return '<option value="' + esc(c) + '"' + (cur === c ? ' selected' : '') + '>' + (c || '선택 안 함') + '</option>';
       }).join('');
     }
+    // 브랜드 선택 책자(32개) + 모델 추천 — brands.js와 연동
+    function brandModels(name) {
+      var b = window.BELLORE_BRAND_BY_NAME && window.BELLORE_BRAND_BY_NAME(name);
+      return b ? b.models : [];
+    }
+    function fillModelList(name) {
+      var dl = $('#lpModelList', listingPage); if (!dl) return;
+      dl.innerHTML = brandModels(name).map(function (m) { return '<option value="' + esc(m) + '">'; }).join('');
+    }
+    function wireBrandPicker(cur) {
+      var btn = $('#lpBrandBtn', listingPage), sheet = $('#lpBrandSheet', listingPage), hidden = $('#lpBrandInput', listingPage);
+      if (!btn || !sheet) return;
+      var brands = window.BELLORE_BRANDS || [];
+      sheet.innerHTML = brands.map(function (b) {
+        return '<button type="button" class="lp-brand-opt' + (b.name === cur ? ' on' : '') + '" data-bn="' + esc(b.name) + '">' +
+          '<img src="' + window.BELLORE_BRAND_LOGO(b.slug) + '" alt="" loading="lazy"><span>' + esc(b.name) + '</span></button>';
+      }).join('');
+      fillModelList(cur);
+      btn.addEventListener('click', function () { sheet.hidden = !sheet.hidden; });
+      sheet.addEventListener('click', function (e) {
+        var o = e.target.closest('[data-bn]'); if (!o) return;
+        var name = o.dataset.bn;
+        hidden.value = name; btn.textContent = name; btn.classList.add('on');
+        $$('.lp-brand-opt', sheet).forEach(function (x) { x.classList.toggle('on', x === o); });
+        fillModelList(name); sheet.hidden = true;
+      });
+    }
 
     // 상세페이지(.product-page) 셸을 재사용한 전체화면 등록/수정 페이지
     var listingPage = document.createElement('div');
@@ -149,8 +176,12 @@
         '</div>' +
         '<form class="signup-form lp-form" id="listingForm">' +
           '<input type="hidden" name="category" value="' + esc((item && item.category) || presetCat || listingCats.brand) + '">' +
-          '<label><span>브랜드 *</span><input name="brand" placeholder="예: ROLEX" value="' + esc(item ? item.brand : '') + '" required></label>' +
-          '<label><span>모델 / 레퍼런스 *</span><input name="model" placeholder="예: 데이트저스트 36" value="' + esc(item ? item.model : '') + '" required></label>' +
+          '<label class="lp-brandpick"><span>브랜드 * (눌러서 선택)</span>' +
+            '<button type="button" class="lp-brand-btn' + (item && item.brand ? ' on' : '') + '" id="lpBrandBtn">' + (item && item.brand ? esc(item.brand) : '브랜드 선택') + '</button>' +
+            '<input type="hidden" name="brand" id="lpBrandInput" value="' + esc(item ? item.brand : '') + '">' +
+            '<div class="lp-brand-sheet" id="lpBrandSheet" hidden></div>' +
+          '</label>' +
+          '<label><span>모델 / 레퍼런스 *</span><input name="model" id="lpModelInput" list="lpModelList" placeholder="브랜드 선택 시 대표 모델 추천" value="' + esc(item ? item.model : '') + '" required autocomplete="off"><datalist id="lpModelList"></datalist></label>' +
           '<label><span>판매가 (숫자, 비우면 가격문의)</span><input name="price" type="number" inputmode="numeric" placeholder="예: 22800000" value="' + (item && item.price ? item.price : '') + '"></label>' +
           '<label><span>할인 판매가 (선택) — 입력 시 정가에 취소선·할인율 표시</span><input name="sale_price" type="number" inputmode="numeric" placeholder="예: 19900000" value="' + (item && item.sale_price ? item.sale_price : '') + '"></label>' +
           '<label><span>판매 상태</span><select name="status">' + statusOptions(item ? item.status : 'on_sale') + '</select></label>' +
@@ -166,6 +197,7 @@
           '</div>' +
         '</form>';
       lPicker = photoPicker($('#listingPhotos', listingPage), 5, lExisting);
+      wireBrandPicker(item ? item.brand : '');
       $('#listingForm', listingPage).addEventListener('submit', function (e) {
         e.preventDefault();
         var fd = new FormData(e.target);

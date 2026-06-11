@@ -1,5 +1,5 @@
 /* 벨로르 PWA 서비스워커 */
-const VERSION = "bellore-v23";
+const VERSION = "bellore-v24";
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 
@@ -11,8 +11,11 @@ const SHELL_ASSETS = [
   './script.js',
   './payments.js',
   './supabase-config.js',
+  './brands.js',
   './supabase.js',
   './bellore-features.js',
+  './wishlist.js',
+  './search.js',
   './manifest.json',
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',

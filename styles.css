@@ -6181,3 +6181,134 @@ body.admin-mode .hcard-dynamic .hcard-actions { display: none; }
 /* 문의/유의 앵커 섹션 여백 */
 .pp-anchor { border-top: 8px solid var(--bg-soft); margin: 28px -18px 0; padding: 22px 18px 0; }
 .pp-anchor:last-child { padding-bottom: 10px; }
+
+/* ============================================================
+   브랜드 원형 가로 스와이프 + 로고 이미지
+   ============================================================ */
+.brand-circle-scroll {
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-wrap: nowrap;
+    gap: 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 0 12px;
+    scroll-snap-type: x proximity;
+}
+.brand-circle-scroll::-webkit-scrollbar { display: none; }
+.brand-circle-scroll .brand-circle { flex: 0 0 auto; width: 64px; scroll-snap-align: start; }
+.brand-circle-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+/* 로고 이미지가 있는 원형은 hover 시 반전하지 않음 */
+.brand-circle:hover .brand-circle-img { background: #f4f2ee; color: #2b2620; box-shadow: 0 4px 14px rgba(0,0,0,.16); }
+.brand-circle-all:hover .brand-circle-img { background: #000; color: #fff; }
+.cat-brand.active .brand-circle-img { outline: 2px solid #111; outline-offset: 2px; }
+
+/* ============================================================
+   검색 페이지 (GUGUS 스타일)
+   ============================================================ */
+.search-page {
+    position: fixed; inset: 0; z-index: 1200;
+    background: #fff; display: flex; flex-direction: column;
+}
+.search-page[hidden] { display: none; }
+.sp-top {
+    flex-shrink: 0; display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px calc(12px + env(safe-area-inset-top)); padding-top: max(14px, env(safe-area-inset-top));
+}
+.sp-bar {
+    flex: 1; display: flex; align-items: center; gap: 8px;
+    border-bottom: 2px solid var(--dark-green); padding: 8px 2px;
+}
+.sp-bar-ic { color: var(--dark-green); flex-shrink: 0; }
+.sp-bar input { flex: 1; border: none; font-size: 16px; background: none; outline: none; }
+.sp-close { flex-shrink: 0; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: #111; }
+
+.sp-tabs { flex-shrink: 0; display: flex; gap: 8px; padding: 6px 14px 14px; }
+.sp-tab {
+    padding: 11px 22px; border-radius: 22px; background: #f1f1ef;
+    font-size: 15px; font-weight: 700; color: #999;
+}
+.sp-tab.active { background: var(--dark-green); color: #fff; }
+
+.sp-scroll { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.sp-panel { padding: 6px 16px 40px; }
+.sp-sec { padding: 18px 0; border-bottom: 1px solid #f0efec; }
+.sp-sec:last-child { border-bottom: none; }
+.sp-sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
+.sp-sec-head h3 { font-size: 17px; font-weight: 800; }
+.sp-clear { font-size: 13px; color: #999; text-decoration: underline; }
+.sp-pop-note { font-size: 11px; color: #bbb; }
+.sp-empty { font-size: 13.5px; color: #bbb; padding: 6px 0 2px; }
+
+.sp-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.sp-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 12px 9px 16px; border-radius: 22px; border: 1px solid #e6e4df;
+    background: #fff; font-size: 14px; color: #333;
+}
+.sp-chip-x { color: #bbb; font-size: 16px; line-height: 1; }
+.sp-sugs { display: flex; flex-wrap: wrap; gap: 10px; }
+.sp-sug { padding: 10px 16px; border-radius: 20px; background: #eef1ef; font-size: 14px; color: #2b2620; font-weight: 500; }
+
+.sp-pop { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; }
+.sp-pop-item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 8px 0; }
+.sp-pop-item b { color: var(--dark-green); font-weight: 800; font-size: 16px; width: 18px; text-align: center; }
+.sp-pop-item span { font-size: 14.5px; color: #333; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.sp-viewed-row { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+.sp-viewed-row::-webkit-scrollbar { display: none; }
+.sp-viewed { flex: 0 0 auto; width: 104px; text-align: left; }
+.sp-viewed-img { display: block; width: 104px; height: 104px; border-radius: 12px; overflow: hidden; background: #f5f3ef; }
+.sp-viewed-img img { width: 100%; height: 100%; object-fit: cover; }
+.sp-viewed-brand { display: block; font-size: 12px; font-weight: 700; margin-top: 7px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sp-viewed-price { display: block; font-size: 12.5px; color: #111; font-weight: 700; }
+
+/* 카테고리 탭: 브랜드 → 모델 */
+.sp-cat { display: flex; min-height: 60vh; }
+.sp-cat-left { width: 38%; flex-shrink: 0; background: #f7f6f3; border-radius: 0; }
+.sp-brand {
+    display: block; width: 100%; text-align: left; padding: 15px 16px;
+    font-size: 14.5px; font-weight: 600; color: #555; border-left: 3px solid transparent;
+}
+.sp-brand.on { background: #fff; color: var(--dark-green); font-weight: 800; border-left-color: var(--dark-green); }
+.sp-cat-right { flex: 1; padding: 6px 4px 6px 8px; }
+.sp-model {
+    display: flex; align-items: center; gap: 8px; width: 100%; text-align: left;
+    padding: 15px 12px; font-size: 14.5px; color: #333; border-bottom: 1px solid #f2f1ee;
+}
+.sp-model-all { font-weight: 800; color: var(--dark-green); }
+.sp-model-logo { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; }
+
+/* 오늘시세 탭 */
+.sp-price-head { display: flex; align-items: center; gap: 10px; padding: 18px 2px 8px; }
+.sp-price-head h3 { font-size: 18px; font-weight: 800; }
+.sp-price-test { font-size: 11px; font-weight: 800; color: #c98a00; background: #fff6e3; border-radius: 5px; padding: 2px 7px; }
+.sp-price-desc { font-size: 13px; color: #888; line-height: 1.6; padding: 0 2px 16px; }
+.sp-price-list { display: flex; flex-direction: column; }
+.sp-price-row { display: flex; align-items: center; gap: 12px; padding: 13px 4px; border-bottom: 1px solid #f2f1ee; }
+.sp-price-row img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+.sp-price-row span { flex: 1; text-align: left; font-size: 14.5px; font-weight: 600; }
+.sp-price-soon { font-size: 11.5px; color: #bbb; }
+
+/* ============================================================
+   시계 등록 · 브랜드 선택 책자(32개)
+   ============================================================ */
+.lp-brandpick { position: relative; }
+.lp-brand-btn {
+    width: 100%; text-align: left; padding: 13px 14px; border-radius: 10px;
+    border: 1px solid var(--border); background: #fff; font-size: 15px; color: #999;
+}
+.lp-brand-btn.on { color: #111; font-weight: 700; }
+.lp-brand-sheet {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px 8px;
+    margin-top: 10px; padding: 14px 10px; border: 1px solid var(--border);
+    border-radius: 12px; background: #faf9f7; max-height: 340px; overflow-y: auto;
+}
+.lp-brand-sheet[hidden] { display: none; }
+.lp-brand-opt { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 6px 2px; border-radius: 10px; }
+.lp-brand-opt img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 1px solid #e7e3da; }
+.lp-brand-opt span { font-size: 11px; color: #444; text-align: center; line-height: 1.2; }
+.lp-brand-opt.on { background: #eef5f0; }
+.lp-brand-opt.on img { outline: 2px solid var(--dark-green); outline-offset: 1px; }
+.lp-brand-opt.on span { color: var(--dark-green); font-weight: 700; }

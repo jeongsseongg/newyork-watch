@@ -490,6 +490,23 @@
       .then(function (res) { if (res.error) throw res.error; refreshListingFeeds(); });
   };
 
+  /* ---------------- 검색 기록(인기검색어 적립) ---------------- */
+  // 검색어를 search_logs에 적재(누구나 insert 가능, RLS로 보호). 실패해도 무시.
+  Backend.logSearch = function (q) {
+    q = String(q || '').trim(); if (!q) return Promise.resolve();
+    return sb.from('search_logs').insert({ q: q, user_id: rawUser ? rawUser.id : null })
+      .then(function () {}, function () {});
+  };
+  // 인기검색어 집계(RPC). 미설치 시 reject → 프런트가 핫 브랜드로 폴백.
+  Backend.popularSearches = function (limit) {
+    return sb.rpc('popular_searches', { lim: limit || 10 }).then(function (res) {
+      if (res.error) throw res.error;
+      var list = (res.data || []).map(function (r) { return { q: r.q, cnt: r.cnt }; });
+      var total = list.reduce(function (s, r) { return s + (Number(r.cnt) || 0); }, 0);
+      return { total: total, list: list };
+    });
+  };
+
   /* ---------------- 업체 승인제 (profiles) ---------------- */
   var vendorRefreshers = [];
   Backend.subscribeVendors = function (cb) {

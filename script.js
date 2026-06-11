@@ -2670,6 +2670,8 @@
     function clearSearchFilter() {
         $$('#collection .hcard').forEach(function (c) { c.style.display = ''; });
     }
+    // 검색 페이지(search.js)에서 호출
+    window.BELLORE_runSearch = runSearch;
 
     /* ============ 상품 상세 모달 ============ */
     function initProductModal() {
@@ -2826,6 +2828,16 @@
                 image: img ? img.src : ''
             };
 
+            // 최근 확인한 상품 기록(검색 페이지에서 사용)
+            if (window.BELLORE_recordView) window.BELLORE_recordView({
+                id: pid || (card.dataset.brand + '|' + card.dataset.model),
+                brand: brand ? brand.textContent : (card.dataset.brand || ''),
+                model: model ? model.textContent : (card.dataset.model || ''),
+                price: parseInt(card.dataset.price, 10) || 0,
+                sale_price: parseInt(card.dataset.sprice, 10) || 0,
+                img: img ? img.src : ''
+            });
+
             modal.hidden = false;
             modal.querySelector('.pp-scroll').scrollTop = 0;
             $$('.pp-tab', modal).forEach(function (x, i) { x.classList.toggle('active', i === 0); });
@@ -2859,6 +2871,9 @@
             modal.hidden = true;
             document.body.style.overflow = '';
         }
+
+        // 검색 페이지(최근 본 상품)에서 상세 열기
+        window.BELLORE_openProductCard = openProduct;
     }
 
     /* ============ 11. 리빌 ============ */
