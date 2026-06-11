@@ -404,6 +404,8 @@
       purchase_year: l.purchase_year || '',
       special_note: l.special_note || '',
       detail_desc: l.detail_desc || '',
+      components: l.components || '',
+      sale_method: l.sale_method || '',
       created_at: l.created_at || null,
       sale_started_at: l.sale_started_at || null,
       photos: (l.image_urls && l.image_urls.length) ? l.image_urls : (l.image_url ? [l.image_url] : [])
@@ -433,12 +435,13 @@
   // 신규 컬럼(stamping·misu)이 아직 DB에 없을 때 발생하는 오류 감지
   function isMissingCol(err) {
     var m = (err && (err.message || err.hint || '')) + ' ' + (err && err.code || '');
-    return /stamping|misu|purchase_year|special_note|detail_desc|schema cache|PGRST204|find the .* column/i.test(m);
+    return /stamping|misu|purchase_year|special_note|detail_desc|components|sale_method|schema cache|PGRST204|find the .* column/i.test(m);
   }
   // 신규 속성 컬럼이 DB에 없을 때 제외하고 재시도하기 위한 목록
   function dropNewCols(o) {
     delete o.stamping; delete o.misu;
     delete o.purchase_year; delete o.special_note; delete o.detail_desc;
+    delete o.components; delete o.sale_method;
   }
   Backend.addProduct = function (data) {
     if (!Backend.isAdmin()) return Promise.reject(new Error('NOT_ADMIN'));
@@ -463,6 +466,8 @@
         purchase_year: data.purchase_year || null,
         special_note: data.special_note || null,
         detail_desc: data.detail_desc || null,
+        components: data.components || null,
+        sale_method: data.sale_method || null,
         image_urls: urls,
         image_url: urls[0] || null
       };
@@ -506,6 +511,8 @@
       if (data.purchase_year != null) patch.purchase_year = data.purchase_year;
       if (data.special_note != null) patch.special_note = data.special_note;
       if (data.detail_desc != null) patch.detail_desc = data.detail_desc;
+      if (data.components != null) patch.components = data.components;
+      if (data.sale_method != null) patch.sale_method = data.sale_method;
       var existing = data.existingPhotos || [];
       if (newUrls.length || data.existingPhotos) {
         var all = existing.concat(newUrls).slice(0, 10);

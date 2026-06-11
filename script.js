@@ -3015,16 +3015,28 @@
             return fmt(d.price) + '<span class="won">원</span>';
         }
         function paintAcc(d) {
-            // 구성품: 수정페이지의 구성 등급(pack)·보증서(has_warranty)와 연동해 체크 표시
-            var pack = String(d.pack || '');
-            var full = (pack.indexOf('풀세트') !== -1);
-            var solo = (pack.indexOf('단품') !== -1);
-            var state = {
-                box: full || (!solo),
-                case: true,
-                card: !!d.has_warranty || full,
-                warranty: !!d.has_warranty
-            };
+            // 구성품: 등록 시 직접 체크한 값(components)을 우선 사용, 없으면 구성 등급으로 추정
+            var comp = String(d.components || '').trim();
+            var state;
+            if (comp) {
+                var set = comp.split(',');
+                state = {
+                    box: set.indexOf('box') !== -1,
+                    case: set.indexOf('case') !== -1,
+                    card: set.indexOf('card') !== -1,
+                    warranty: !!d.has_warranty
+                };
+            } else {
+                var pack = String(d.pack || '');
+                var full = (pack.indexOf('풀세트') !== -1);
+                var solo = (pack.indexOf('단품') !== -1);
+                state = {
+                    box: full || (!solo),
+                    case: true,
+                    card: !!d.has_warranty || full,
+                    warranty: !!d.has_warranty
+                };
+            }
             $$('#pmAcc .pp-acc-item').forEach(function (el) {
                 var on = !!state[el.dataset.acc];
                 el.classList.toggle('on', on);
@@ -3036,7 +3048,8 @@
             var box = $('#pmChips');
             if (!box) return;
             var pack = String(d.pack || '');
-            var hasBox = pack.indexOf('풀세트') !== -1 ||
+            var hasBox = String(d.components || '').split(',').indexOf('box') !== -1 ||
+                pack.indexOf('풀세트') !== -1 ||
                 (String(d.accessories || '').indexOf('박스') !== -1);
             var rows = [
                 ['보증서', d.has_warranty ? '있음' : '미표기', !!d.has_warranty],
@@ -3096,6 +3109,7 @@
             $('#pmPrice').innerHTML = ppPriceHTML(d);
             $('#pmNo').textContent = d.no || '-';
             var no2 = $('#pmNo2'); if (no2) no2.textContent = d.no || '-';
+            var sm = $('#pmSaleMethod'); if (sm) sm.textContent = d.sale_method || '벨로르 직접 검수 판매';
             $('#pmPoint').textContent = d.price ? (fmt(Math.round(d.price * 0.01)) + 'P 적립 (1%)') : '-';
             paintAcc(d);
             paintChips(d);
@@ -3175,6 +3189,8 @@
                         purchase_year: it.purchase_year || '',
                         special_note: it.special_note || '',
                         detail_desc: it.detail_desc || '',
+                        components: it.components || '',
+                        sale_method: it.sale_method || '',
                         no: String(it.id).slice(0, 8).toUpperCase()
                     });
                     window.BELLORE_currentProduct = {
