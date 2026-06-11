@@ -5505,10 +5505,10 @@ body.admin-mode .hcard-dynamic .hcard-admin { display: flex; }
     text-decoration: none;
 }
 
-/* 홈 판매시계 2열 그리드 */
+/* 홈 판매시계 그리드 — 이미지 규격 고정(약 160~200px 정사각) */
 .home-sale-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 14px;
     margin-top: 20px;
 }
@@ -5971,14 +5971,16 @@ body.admin-mode .hcard-dynamic .hcard-admin { display: flex; }
 .col-grid-inner,
 .hcard-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* 이미지 규격 고정: 한 칸 약 160~200px → 이미지(정사각)도 그 폭으로 고정
+       모바일 2열 · PC 일반 3열 · 와이드 6열로 자동 정렬되어 사이즈가 커지지 않음 */
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 14px;
     align-items: start;          /* 카드 높이 제각각이어도 윗줄 정렬 */
 }
 html[data-width="full"] .home-sale-grid,
 html[data-width="full"] .col-grid-inner,
 html[data-width="full"] .hcard-grid {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 16px;
 }
 /* 카드 이미지 여백 살짝 줄여 더 큼지막하게 */
@@ -6717,12 +6719,13 @@ body.is-searching .tabbar { display: none !important; }
     .cat-brands.brand-circle-scroll.is-collapsed,
     .cat-brands.brand-circle-scroll.show-all {
         display: grid !important;
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(7, 1fr) !important;   /* 세로 1줄 방지: 기본 none!important 덮어쓰기 */
         gap: 20px 10px;
         overflow: hidden;
         touch-action: auto;
         cursor: default;
         justify-content: stretch;
+        flex-wrap: wrap;
     }
     .cat-brands.brand-circle-scroll.is-collapsed { max-height: 118px; }   /* 첫 줄만 */
     .cat-brands.brand-circle-scroll.show-all { max-height: none; }
@@ -6740,7 +6743,7 @@ body.is-searching .tabbar { display: none !important; }
 @media (max-width: 699px) {
     .cat-brands.brand-circle-scroll.show-all {
         display: grid !important;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(5, 1fr) !important;   /* 세로 1줄 방지 */
         gap: 18px 6px;
         overflow-x: visible;
         touch-action: auto;
