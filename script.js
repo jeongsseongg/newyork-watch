@@ -116,9 +116,10 @@
         if (nextBtn) nextBtn.addEventListener('click', next);
 
         // 스와이프(터치/포인터) — 짧은 스와이프·빠른 플릭 모두 인식, 손가락을 그대로 따라옴
+        // 배너 슬라이드 자체가 <a> 라서 a/button 으로 막지 않고, 스와이프했으면 클릭만 취소한다
         var startX = 0, startT = 0, dx = 0, dragging = false, swiped = false;
         track.addEventListener('pointerdown', function (e) {
-            if (e.target.closest('a,button')) return;
+            if (e.button != null && e.button !== 0) return;
             dragging = true; swiped = false; startX = e.clientX; startT = Date.now(); dx = 0;
             track.style.transition = 'none';
             try { track.setPointerCapture(e.pointerId); } catch (err) {}
@@ -130,6 +131,10 @@
             if (Math.abs(dx) > 4) swiped = true;
             track.style.transform = 'translateX(calc(' + (-index * 100) + '% + ' + dx + 'px))';
         });
+        // 드래그로 슬라이드를 넘겼으면 그 직후의 클릭(=링크 이동)을 취소
+        track.addEventListener('click', function (e) {
+            if (swiped) { e.preventDefault(); e.stopPropagation(); swiped = false; }
+        }, true);
         function endDrag(e) {
             if (!dragging) return;
             dragging = false;

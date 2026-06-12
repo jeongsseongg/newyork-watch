@@ -5342,7 +5342,7 @@ body.admin-mode .hcard-dynamic .hcard-admin { display: flex; }
 
 /* ============ 히어로 배너 캐러셀 ============ */
 .hero-carousel { position: relative; overflow: hidden; }
-.hero-track { display: flex; transition: transform .45s cubic-bezier(.2,.8,.2,1); will-change: transform; }
+.hero-track { display: flex; transition: transform .45s cubic-bezier(.2,.8,.2,1); will-change: transform; touch-action: pan-y; }
 .hero-slide { position: relative; flex: 0 0 100%; min-width: 100%; }
 .hero-slide.hero { min-height: 70vh; }
 /* DB 배너 슬라이드 */
